@@ -1,13 +1,15 @@
-import { useState } from 'react'
 import './App.css'
+import React, {useEffect, useState} from 'react'
+import {Route, Routes } from 'react-router-dom';
 
-function App() {
-  const [count, setCount] = useState(0)
+function App() {      
 
   return (
-    <>
-
-    </>
+    <div>
+        <Routes>
+          <Route path="/" element={<Index/>}/>
+        </Routes>
+    </div>
   )
 }
 
