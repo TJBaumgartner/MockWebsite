@@ -8,10 +8,6 @@ exports.index = asyncHandler(async (req,res) => {
     res.sendStatus(200)
 })
 
-
-
-
-
 exports.sign_up = asyncHandler(async (req,res) => {
     const userExists = await User.findOne({$or: [{username:req.body.username}, {email: req.body.email}]}).exec()
     console.log(userExists)
@@ -47,7 +43,7 @@ exports.login = asyncHandler(async (req,res) => {
             const refreshToken = jwt.sign(user.toJSON(), process.env.REFRESH_TOKEN)
             const token = new Token({token: refreshToken})
             await token.save()
-            res.json({accessToken: accessToken, refreshToken: refreshToken, name: user.username, userId: user.id})
+            res.json({accessToken: accessToken, refreshToken: refreshToken, name: user.username, userId: user._id})
         } else {
             return res.status(403).send('Incorrect Password')
         }

@@ -6,6 +6,8 @@ import HomePage from './components/Homepage';
 import Signup from './components/signup';
 import Login from './components/Login'
 import Index from './components/Index';
+import Profile from './components/Profile';
+import Navbar from './components/Navbar';
 
 function App() {   
   
@@ -53,12 +55,14 @@ function App() {
 }
 
   return (
-    <div>
+    <div className='AppContainer'>
+        <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} logout={logout}/>
         <Routes>
           <Route path="/" element={<Index/>}/>
           <Route path="/homepage" element={<HomePage logout={logout}/>}/>
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} loggedIn={loggedIn} logout={logout}/>}/>
           <Route path="/user/create" element={<Signup/>}/>
+          <Route path="/:id/profile" element={<Profile/>}/>
         </Routes>
     </div>
   )

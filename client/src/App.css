@@ -8,7 +8,7 @@
 :root{
   --twitter-blue: rgb(29, 155, 240);
 }
-.homepageContainer{
+.AppContainer{
   display: grid;
   grid-template-columns: 1fr 3fr;
 }
@@ -21,7 +21,7 @@
   height: auto;
   max-height: 80vh;
   padding: 1em;
-  background-color: grey;
+  background-color: rgb(71, 71, 71);
   transform: translate(-50%, -50%);  
   border-radius: 1em;
   display: flex;
@@ -57,7 +57,7 @@
 .postForm textarea{
   width: 100%;
   min-height: 100px;
-  background-color: grey;
+  background-color: rgb(71, 71, 71);
   border: none;
   color: white;
   padding: 1em;
@@ -65,4 +65,8 @@
 }
 .postForm textarea::placeholder{
   color: white;
+}
+
+.loginWrapper{
+  grid-column: 1/4;
 }

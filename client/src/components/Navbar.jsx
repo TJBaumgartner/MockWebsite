@@ -12,21 +12,80 @@ const Navbar = (props) => {
 
     const id = localStorage.getItem('userID')
     const name = localStorage.getItem('name')
+
+    const navigate = useNavigate()
+    const [displayForm, setDisplayForm] = useState(false)
+    const [message, setMessage] = useState('')
+
+    const displayPostForm = () => {
+        setDisplayForm(true)
+    }
+    const createPost = (e) => {
+        e.preventDefault();
+        const user = localStorage.getItem('userID')
+        const data = {message, user}
+        fetch('http://localhost:5000/api/post/create', {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(data)
+        })
+        .then(() => {
+            console.log('Post Created')
+        })
+        closePostForm()
+    }
+    const closePostForm = () => {
+        setDisplayForm(false)
+        setMessage('')
+    }
+
+
     return (
         <div className="navContainer"> 
-                <div>
-                        <div className="Navbar"> 
-                            <Link to={{
-                                pathname: `/user/${id}/profile`,
-                                }}
-                                >
-                                <h1>Profile</h1>
-                            </Link>
-                            <div>
-                                <h1>{name} <button onClick={()=> logout()} className="logout">Logout</button></h1>
-                            </div>
+            <div>
+                {loggedIn == true &&
+                    <div className="Navbar"> 
+                        <Link to={'/homepage'}>
+                            <h1>Hompage</h1>
+                        </Link>
+                        <Link to={{
+                            pathname: `/${name}/profile`,
+                            }}
+                            >
+                            <h1>Profile</h1>
+                        </Link>
+                        <div>
+                            <button onClick={() => displayPostForm()}>Post</button>
+                            {displayForm == true &&
+                                <div className='postFormContainer'>
+                                    <span onClick={() => closePostForm()}>X</span>
+                                    <form className="postForm" action="" method="POST" onSubmit={createPost}>
+                                        <textarea 
+                                        name="message" 
+                                        id="message" 
+                                        type="text"
+                                        required
+                                        value={message}
+                                        onChange={(e) => setMessage(e.target.value)}
+                                        placeholder='What to post?!'
+                                        />
+                                        <div className='bottomBorder'></div>
+                                        {message !== '' &&
+                                            <button type="submit">Post</button>
+                                        }
+                                        {message == '' &&
+                                            <button type='button' className='disabledButton'>Post</button>
+                                        }
+                                    </form>  
+                                </div> 
+                            }
                         </div>
-                </div>
+                        <div>
+                            <h1>{name} <button onClick={()=> logout()} className="logout">Logout</button></h1>
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
   );
 };

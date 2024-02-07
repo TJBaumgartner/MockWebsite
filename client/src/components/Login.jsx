@@ -46,7 +46,7 @@ function Login(props) {
                 localStorage.setItem('access', data.accessToken);
                 localStorage.setItem('refresh', data.refreshToken);
                 localStorage.setItem('name', data.name);
-                localStorage.setItem('userID', data.id);
+                localStorage.setItem('userID', data.userId);
                 props.setLoggedIn(true);
                 navigate('/homepage');
             })
