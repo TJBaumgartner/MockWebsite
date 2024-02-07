@@ -4,6 +4,14 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 const Token = require('../models/token')
 
+exports.index = asyncHandler(async (req,res) => {
+    res.sendStatus(200)
+})
+
+
+
+
+
 exports.sign_up = asyncHandler(async (req,res) => {
     const userExists = await User.findOne({$or: [{username:req.body.username}, {email: req.body.email}]}).exec()
     console.log(userExists)

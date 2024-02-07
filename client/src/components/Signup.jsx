@@ -50,16 +50,16 @@ function SignUp() {
                     <input type="password" name='password' id="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value.replace(" ", ""))} required></input>
                     <label htmlFor='confirmPassword'>Confirm Password</label>
                     <input type="password" name='confirmPassword' id="confirmPassword" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value.replace(" ", ""))} required></input>
-                    {/* <div className='createAccountLink'>
+                    <div className='createAccountLink'>
                         <h3>Already a user? <Link to="/login">Login!</Link></h3>
-                    </div> */}
+                    </div>
                     <button type='submit'>Sign Up!</button>
                 </form>
                 {matchPassword === false &&
                     <h2>Passwords must match</h2>
                 }    
                 {userTaken === true &&
-                    <h2>Username is taken</h2>
+                    <h2>Username or Email is taken</h2>
                 }  
             </div>
         </div>

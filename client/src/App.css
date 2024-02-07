@@ -4,3 +4,7 @@
   box-sizing: border-box;
   text-decoration: none;
 }
+.homepageContainer{
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
