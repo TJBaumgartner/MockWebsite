@@ -29,6 +29,9 @@ function HomePage(props) {
     const createPost = (e) => {
         e.preventDefault()
         console.log(message)
+        closePostForm()
+    }
+    const closePostForm = () => {
         setDisplayForm(false)
         setMessage('')
     }
@@ -38,17 +41,27 @@ function HomePage(props) {
             <h1>Made it to the homepage</h1>
             <button onClick={() => displayPostForm()}>Post</button>
             {displayForm == true &&
-                <form action="" method="POST" onSubmit={createPost}>
-                    <input 
-                    name="message" 
-                    id="message" 
-                    type="text"
-                    required
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    />
-                <button type="submit">Post</button>
-            </form>   
+                <div className='postFormContainer'>
+                    <span onClick={() => closePostForm()}>X</span>
+                    <form className="postForm" action="" method="POST" onSubmit={createPost}>
+                        <textarea 
+                        name="message" 
+                        id="message" 
+                        type="text"
+                        required
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        placeholder='What to post?!'
+                        />
+                        <div className='bottomBorder'></div>
+                        {message !== '' &&
+                            <button type="submit">Post</button>
+                        }
+                        {message == '' &&
+                            <button type='button' className='disabledButton'>Post</button>
+                        }
+                    </form>  
+                </div> 
             }
         </div>
     )
