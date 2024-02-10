@@ -5,13 +5,15 @@ const post = require('../controllers/posts')
 const authenticate = require('../controllers/authenticate');
 
 router.post("/user/create", user.sign_up);
+router.post("/user/list",authenticate, user.userList);
 router.post("/login", user.login);
 router.post("/logout", user.logout);
 router.post("/token", user.refresh)
 router.get("/homepage", authenticate, user.index)
 router.post("/post/create", post.post_create_post);
+router.post("/createFake", user.create_fake);
+router.post("/createFakePost", user.create_fake_post);
 
-// router.get("/user/:id/message",authenticate, message.message);
 // router.post("/user/:id/allMessages",authenticate, message.allMessages);
 
 // router.get("/user/:id/profile",authenticate, user.profile);

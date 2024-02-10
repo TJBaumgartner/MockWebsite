@@ -4,8 +4,62 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 const Token = require('../models/token')
 
+
+const { faker } = require('@faker-js/faker');
+const Post = require('../models/posts')
+
+exports.create_fake = asyncHandler(async (req,res) => {
+    const randomUsername = faker.internet.userName();
+    const randomPassword = faker.internet.password();
+    const randomEmail = faker.internet.email();
+
+    const userExists = await User.findOne({$or: [{username: randomUsername}, {email: randomEmail}]}).exec()
+    console.log(userExists)
+    if(userExists){
+        return res.status(400).send('User already exists')
+    }
+    const securePass = await bcrypt.hash(randomPassword, 10);
+    const user = new User({
+        username: randomUsername,
+        email: randomEmail,
+        password: securePass,
+    })
+    await user.save()
+    return res.status(200).send('New User created!')
+})
+
+exports.create_fake_post = asyncHandler(async (req,res) => {
+    const randomDate = faker.date.past({ years: 2 })
+    const randomLikes = faker.number.int({ max: 1000 })
+    const randomWords = faker.lorem.words({ min: 5, max: 20 })
+
+    const user = await User.findOne({username: 'Leilani_Okuneva66'});
+    if(user == null){
+        res.status(400).json('User does not exist')
+    }
+    const post = new Post({
+        message: randomWords,
+        likes: randomLikes,
+        date: randomDate,
+        user: user._id
+    })
+    await post.save()
+    res.sendStatus(200)
+})
+
+
+
+
+
+
+
 exports.index = asyncHandler(async (req,res) => {
     res.sendStatus(200)
+})
+
+exports.userList = asyncHandler(async (req,res) => {
+    const allUsers = await User.find().sort({followers: -1}).exec()
+    res.status(200).json(allUsers)
 })
 
 exports.sign_up = asyncHandler(async (req,res) => {
@@ -21,9 +75,7 @@ exports.sign_up = asyncHandler(async (req,res) => {
         email: req.body.email,
         password: securePass,
     })
-    console.log(user)
     await user.save()
-    console.log('final')
     return res.status(200).send('New User created!')
 })
 

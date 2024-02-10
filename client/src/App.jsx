@@ -8,6 +8,7 @@ import Login from './components/Login'
 import Index from './components/Index';
 import Profile from './components/Profile';
 import Navbar from './components/Navbar';
+import Users from './components/Users';
 
 function App() {   
   
@@ -60,6 +61,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Index/>}/>
           <Route path="/homepage" element={<HomePage logout={logout}/>}/>
+          <Route path="/users" element={<Users/>}/>
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} loggedIn={loggedIn} logout={logout}/>}/>
           <Route path="/user/create" element={<Signup/>}/>
           <Route path="/:id/profile" element={<Profile/>}/>

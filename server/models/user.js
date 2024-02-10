@@ -8,6 +8,7 @@ const UserSchema = new Schema({
     password: {type: String, required: true},
     bio: {type: String, required: true, default: 'No Bio'},
     followers: [{type: Schema.Types.ObjectId, ref: "User"}],
+    following: [{type: Schema.Types.ObjectId, ref: "User"}],
     likes: [{type: Schema.Types.ObjectId, ref: "User"}],
     user: [{type: Schema.Types.ObjectId, ref: "User"}],
 });

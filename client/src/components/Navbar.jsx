@@ -11,7 +11,6 @@ const Navbar = (props) => {
     const logout = props.logout
 
     const id = localStorage.getItem('userID')
-    const name = localStorage.getItem('name')
 
     const navigate = useNavigate()
     const [displayForm, setDisplayForm] = useState(false)
@@ -45,15 +44,20 @@ const Navbar = (props) => {
             <div>
                 {loggedIn == true &&
                     <div className="Navbar"> 
-                        <Link to={'/homepage'}>
-                            <h1>Hompage</h1>
-                        </Link>
-                        <Link to={{
-                            pathname: `/${name}/profile`,
-                            }}
-                            >
-                            <h1>Profile</h1>
-                        </Link>
+                        <div>
+                            <Link to={'/homepage'}>
+                                <h1>Hompage</h1>
+                            </Link>
+                            <Link to={'/users'}>
+                                <h1>Explore</h1>
+                            </Link>
+                            <Link to={{
+                                pathname: `/${id}/profile`,
+                                }}
+                                >
+                                <h1>Profile</h1>
+                            </Link>
+                        </div>
                         <div>
                             <button onClick={() => displayPostForm()}>Post</button>
                             {displayForm == true &&

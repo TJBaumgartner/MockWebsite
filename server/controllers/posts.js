@@ -19,8 +19,8 @@ exports.post_create_post = asyncHandler(async(req,res,next) => {
     res.sendStatus(200)
 })
 exports.post_list = asyncHandler(async (req, res, next) => {
-    const allPosts = await Post.find({isPublished: true})
-    .sort({title: 1})
+    const allPosts = await Post.find({})
+    .sort({date: 1})
     .exec();
     res.json(allPosts)
 });
