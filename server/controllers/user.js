@@ -62,6 +62,29 @@ exports.userList = asyncHandler(async (req,res) => {
     res.status(200).json(allUsers)
 })
 
+exports.follow = asyncHandler(async (req,res) => {
+    const [currentUser, userToFollow] = await Promise.all([
+        User.findOne({_id: req.body.id}),
+        User.findOne({_id: req.body.user}),
+    ])
+    if(currentUser == null || userToFollow == null){
+        return res.status(401)
+    }
+    await Promise.all([
+        User.findByIdAndUpdate(
+            {_id: req.body.user }, 
+            { $push: { followers: req.body.id}
+        }),
+        User.findByIdAndUpdate(
+            {_id: req.body.id }, 
+            { $push: { following: req.body.user}
+        })
+    ])
+    console.log('hey')
+
+    res.status(200)
+})
+
 exports.sign_up = asyncHandler(async (req,res) => {
     const userExists = await User.findOne({$or: [{username:req.body.username}, {email: req.body.email}]}).exec()
     console.log(userExists)

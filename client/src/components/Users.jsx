@@ -26,6 +26,18 @@ function Users() {
         }) 
     }, [])
 
+    const follow = (user) => {
+
+        const data = {id, user}
+        fetch('http://localhost:5000/api/user/follow', {
+            method: 'POST',
+            headers: {"Content-type": "application/json"},
+            body: JSON.stringify(data)
+        })
+        .then((response) => {
+            return response.json()
+        })
+    }
     
     return (
         <div className='userListContainer'>
@@ -40,7 +52,7 @@ function Users() {
                             <span key={user._id}>{user.username}</span>
                             <p>{user.bio}</p>
                         </div>
-                        <button onClick={() => follow()} >follow</button>
+                        <button onClick={() => follow(user._id)} >follow</button>
                     </div>
                 ))
             }

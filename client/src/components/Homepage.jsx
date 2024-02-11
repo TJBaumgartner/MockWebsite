@@ -45,7 +45,6 @@ function HomePage() {
             <h1>Made it to the homepage</h1>
             {/* <button onClick={() => fakeUser()}>Create Random User</button>
             <button onClick={() => fakePost()}>Create Random Post</button> */}
-
         </div>
     )
 }
