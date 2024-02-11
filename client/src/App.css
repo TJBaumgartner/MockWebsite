@@ -85,3 +85,13 @@
   color: white;
   padding: 1.2rem;
 }
+.followTabs{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.followTabs p{
+  font-size: 1.2rem;
+}

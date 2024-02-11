@@ -8,7 +8,9 @@ import Login from './components/Login'
 import Index from './components/Index';
 import Profile from './components/Profile';
 import Navbar from './components/Navbar';
-import Users from './components/Users';
+import Discover from './components/Discover';
+import Followers from './components/Followers';
+import Following from './components/Following';
 
 function App() {   
   
@@ -61,7 +63,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Index/>}/>
           <Route path="/homepage" element={<HomePage logout={logout}/>}/>
-          <Route path="/users" element={<Users/>}/>
+          <Route path="/following" element={<Following/>}/>
+          <Route path="/discover" element={<Discover/>}/>
+          <Route path="/followers" element={<Followers/>}/>
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} loggedIn={loggedIn} logout={logout}/>}/>
           <Route path="/user/create" element={<Signup/>}/>
           <Route path="/:id/profile" element={<Profile/>}/>

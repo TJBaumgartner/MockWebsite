@@ -57,7 +57,15 @@ exports.index = asyncHandler(async (req,res) => {
     res.sendStatus(200)
 })
 
-exports.userList = asyncHandler(async (req,res) => {
+exports.discoverList = asyncHandler(async (req,res) => {
+    const allUsers = await User.find().sort({followers: -1}).exec()
+    res.status(200).json(allUsers)
+})
+exports.followerList = asyncHandler(async (req,res) => {
+    const allUsers = await User.find().sort({followers: -1}).exec()
+    res.status(200).json(allUsers)
+})
+exports.followingList = asyncHandler(async (req,res) => {
     const allUsers = await User.find().sort({followers: -1}).exec()
     res.status(200).json(allUsers)
 })

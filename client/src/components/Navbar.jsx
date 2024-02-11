@@ -48,7 +48,7 @@ const Navbar = (props) => {
                             <Link to={'/homepage'}>
                                 <h1>Hompage</h1>
                             </Link>
-                            <Link to={'/users'}>
+                            <Link to={'/discover'}>
                                 <h1>Explore</h1>
                             </Link>
                             <Link to={{

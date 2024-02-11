@@ -6,7 +6,11 @@ const authenticate = require('../controllers/authenticate');
 
 router.post("/user/create", user.sign_up);
 
-router.post("/user/list",authenticate, user.userList);
+router.post("/user/discover",authenticate, user.discoverList);
+
+router.post("/user/followers",authenticate, user.followerList);
+
+router.post("/user/following",authenticate, user.followingList);
 
 router.post("/user/follow", user.follow);
 
