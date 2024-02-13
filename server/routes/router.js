@@ -12,6 +12,8 @@ router.post("/user/followers",authenticate, user.followerList);
 
 router.post("/user/following",authenticate, user.followingList);
 
+router.post("/user/unfollow", user.unfollow);
+
 router.post("/user/follow", user.follow);
 
 router.post("/login", user.login);

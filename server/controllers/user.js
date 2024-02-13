@@ -58,15 +58,15 @@ exports.index = asyncHandler(async (req,res) => {
 })
 
 exports.discoverList = asyncHandler(async (req,res) => {
-    const allUsers = await User.find().sort({followers: -1}).exec()
+    const allUsers = await User.find().where({'followers': {"$ne": req.body.id}}).sort({followers: -1}).exec()
     res.status(200).json(allUsers)
 })
 exports.followerList = asyncHandler(async (req,res) => {
-    const allUsers = await User.find().sort({followers: -1}).exec()
+    const allUsers = await User.findOne({_id: req.body.id}).populate('followers').sort({followers: -1}).exec()
     res.status(200).json(allUsers)
 })
 exports.followingList = asyncHandler(async (req,res) => {
-    const allUsers = await User.find().sort({followers: -1}).exec()
+    const allUsers = await User.findOne({_id: req.body.id}).populate('following').populate('followers').sort({followers: -1}).exec()
     res.status(200).json(allUsers)
 })
 
@@ -88,11 +88,29 @@ exports.follow = asyncHandler(async (req,res) => {
             { $push: { following: req.body.user}
         })
     ])
-    console.log('hey')
 
     res.status(200)
 })
-
+exports.unfollow = asyncHandler(async (req,res) => {
+    const [currentUser, userToUnfollow] = await Promise.all([
+        User.findOne({_id: req.body.id}),
+        User.findOne({_id: req.body.user}),
+    ])
+    if(currentUser == null || userToUnfollow == null){
+        return res.status(401)
+    }
+    await Promise.all([
+        User.findByIdAndUpdate(
+            {_id: req.body.user }, 
+            { $pull: { followers: req.body.id}
+        }),
+        User.findByIdAndUpdate(
+            {_id: req.body.id }, 
+            { $pull: { following: req.body.user}
+        })
+    ])
+    res.sendStatus(200)
+})
 exports.sign_up = asyncHandler(async (req,res) => {
     const userExists = await User.findOne({$or: [{username:req.body.username}, {email: req.body.email}]}).exec()
     console.log(userExists)

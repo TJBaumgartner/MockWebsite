@@ -7,9 +7,17 @@ function Discover() {
     const id = localStorage.getItem('userID')
     const name = localStorage.getItem('name')
     const [users, setUsers] = useState()
-    const [followRequest, setFollowRequest] = useState(false)
+    const [followSent, setFollowSent] = useState(false)
 
     useEffect(() => {
+        console.log('hi')
+        setInterval(() => {
+            loadUsers()
+        }, 100)
+        clearInterval()
+    }, [followSent])
+
+    const loadUsers = () => {
         const data = {id}
         fetch(`http://localhost:5000/api/user/discover`, {   
             method: 'POST',     
@@ -23,14 +31,11 @@ function Discover() {
             return response.json()
         })
         .then((data) => {
-            console.log(data)
             setUsers(data)
-            setFollowRequest(false)
         }) 
-    }, [followRequest])
+    }
 
     const follow = (user) => {
-
         const data = {id, user}
         fetch('http://localhost:5000/api/user/follow', {
             method: 'POST',
@@ -38,7 +43,7 @@ function Discover() {
             body: JSON.stringify(data)
         })
         .then((response) => {
-            setFollowRequest(true)
+            setFollowSent(true)
             return response.json()
         })
     }
@@ -66,7 +71,7 @@ function Discover() {
                             <span key={user._id}>{user.username}</span>
                             <p>{user.bio}</p>
                         </div>
-                        <button onClick={() => follow(user._id)} >follow</button>
+                        <button onClick={() => follow(user._id)} >Follow</button>
                     </div>
                 ))
             }

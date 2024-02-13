@@ -9,9 +9,11 @@ function Following() {
     const [users, setUsers] = useState()
     const [followRequest, setFollowRequest] = useState(false)
 
+
+
     useEffect(() => {
         const data = {id}
-        fetch(`http://localhost:5000/api/user/discover`, {   
+        fetch(`http://localhost:5000/api/user/following`, {   
             method: 'POST',     
             headers: {
                 'Content-Type': 'application/json',
@@ -23,16 +25,17 @@ function Following() {
             return response.json()
         })
         .then((data) => {
-            console.log(data)
-            setUsers(data)
+            console.log(data.following)
+            setUsers(data.following)
             setFollowRequest(false)
         }) 
     }, [followRequest])
 
-    const follow = (user) => {
+
+    const unfollow = (user) => {
 
         const data = {id, user}
-        fetch('http://localhost:5000/api/user/follow', {
+        fetch('http://localhost:5000/api/user/unfollow', {
             method: 'POST',
             headers: {"Content-type": "application/json"},
             body: JSON.stringify(data)
@@ -58,16 +61,19 @@ function Following() {
             </div>
             {users &&
                 users.map((user) => (
-                    (user.username == name || user.followers.includes(id)) ?
+                    (user.username == name) ?
                     null
                     :
+                    (user.followers.includes(id)) ? 
                         <div className='userFollow'>
                         <div className='userInfo'>
                             <span key={user._id}>{user.username}</span>
                             <p>{user.bio}</p>
                         </div>
-                        <button onClick={() => follow(user._id)} >follow</button>
+                        <button onClick={() => unfollow(user._id)} >Unfollow</button>
                     </div>
+                    :
+                    null
                 ))
             }
         </div>
