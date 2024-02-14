@@ -99,17 +99,17 @@ function Followers() {
             {users &&
                 users.map((user) => (
                     (user.followers.includes(id)) ? 
-                    <div className='userFollow'>
+                    <div className='userFollow' key={user._id}>
                         <div className='userInfo'>
-                            <span key={user._id}>{user.username}</span>
+                            <span>{user.username}</span>
                             <p>{user.bio}</p>
                         </div>
                         <button onClick={() => unfollow(user._id)} >Unfollow</button>
                     </div>
                     :
-                    <div className='userFollow'>
+                    <div className='userFollow' key={user._id}>
                         <div className='userInfo'>
-                            <span key={user._id}>{user.username}</span>
+                            <span>{user.username}</span>
                             <p>{user.bio}</p>
                         </div>
                         <button onClick={() => follow(user._id)} >Follow</button>

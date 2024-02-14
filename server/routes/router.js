@@ -6,11 +6,11 @@ const authenticate = require('../controllers/authenticate');
 
 router.post("/user/create", user.sign_up);
 
-router.post("/user/discover",authenticate, user.discoverList);
+router.post("/user/discover", user.discoverList);
 
-router.post("/user/followers",authenticate, user.followerList);
+router.post("/user/followers", user.followerList);
 
-router.post("/user/following",authenticate, user.followingList);
+router.post("/user/following", user.followingList);
 
 router.post("/user/unfollow", user.unfollow);
 
@@ -23,6 +23,8 @@ router.post("/logout", user.logout);
 router.post("/token", user.refresh);
 
 router.get("/homepage", authenticate, user.index);
+
+router.post("/homepage/posts", post.post_list);
 
 router.post("/post/create", post.post_create_post);
 

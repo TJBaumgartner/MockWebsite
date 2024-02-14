@@ -1,4 +1,6 @@
 const Post = require('../models/posts')
+const User = require('../models/user')
+
 const asyncHandler = require("express-async-handler");
 
 exports.post_create_get = asyncHandler(async (req, res, next) => {
@@ -18,11 +20,13 @@ exports.post_create_post = asyncHandler(async(req,res,next) => {
     await post.save()
     res.sendStatus(200)
 })
+
 exports.post_list = asyncHandler(async (req, res, next) => {
-    const allPosts = await Post.find({})
-    .sort({date: 1})
-    .exec();
-    res.json(allPosts)
+    const posts = await Post.find()
+    if(posts == null){
+        return res.sendStatus(401)
+    }
+    res.status(200).json(posts)
 });
 
 exports.post_detail_get = asyncHandler(async (req, res, next) => {
