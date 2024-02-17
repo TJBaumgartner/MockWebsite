@@ -4,34 +4,27 @@ import { Link } from 'react-router-dom'
 
 function Followers() {
 
-    const id = localStorage.getItem('userID')
-    const name = localStorage.getItem('name')
-    const [users, setUsers] = useState()
-    const [followRequest, setFollowRequest] = useState()
+/**
+ * 
+ * 
+ * 
+ *  WORKING ON FOLLOW BUTTON CHANGING TO UNFOLLOW
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 
-    // useEffect(() => {
-    //     const data = {id}
-    //     fetch(`http://localhost:5000/api/user/followers`, {   
-    //         method: 'POST',     
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             Authorization: 'Bearer ' + localStorage.getItem('access')
-    //         },
-    //         body: JSON.stringify(data)
-    //     })
-    //     .then((response) => {
-    //         return response.json()
-    //     })
-    //     .then((data) => {
-    //         console.log(data.followers)
-    //         setUsers(data.followers)
-    //         setFollowRequest(false)
-    //     }) 
-    // }, [followRequest])
+
+
+    const id = localStorage.getItem('userID')
+    const [users, setUsers] = useState()
+    const [following, setFollowing] = useState([])
 
     const loadUsers = () => {
         const data = {id}
-        fetch(`http://localhost:5000/api/user/followers`, {   
+        const newData = fetch(`http://localhost:5000/api/user/followers`, {   
             method: 'POST',     
             headers: {
                 'Content-Type': 'application/json',
@@ -43,21 +36,27 @@ function Followers() {
             return response.json()
         })
         .then((data) => {
-            setUsers(data.followers)
+            return data.followers
         }) 
+        return newData
     }
 
+
     useEffect(() => {
-        console.log('hi')
-        setInterval(() => {
-            loadUsers()
-        }, 100)
-        clearInterval()
-    }, [followRequest])
+        async function fetchData(){
+            try{
+                const data = await loadUsers()
+                setUsers(data)
+                log(data)
+            } catch (e) {
+                console.error(e)
+            }
+        }
+        fetchData()
+    }, [])
 
-
-    const unfollow = (user) => {
-
+    const unfollow = (element) => {
+        const user = element._id
         const data = {id, user}
         fetch('http://localhost:5000/api/user/unfollow', {
             method: 'POST',
@@ -65,13 +64,15 @@ function Followers() {
             body: JSON.stringify(data)
         })
         .then((response) => {
-            setFollowRequest(true)
             return response.json()
         })
+        setFollowing(following.filter(function(following){
+            return following._id !== user
+        }))
     }
     
-    const follow = (user) => {
-
+    const follow = (element) => {
+        const user = element._id
         const data = {id, user}
         fetch('http://localhost:5000/api/user/follow', {
             method: 'POST',
@@ -79,9 +80,22 @@ function Followers() {
             body: JSON.stringify(data)
         })
         .then((response) => {
-            setFollowRequest(true)
             return response.json()
         })
+        return setFollowing([...following, element])
+    }
+    const log = (data) => {
+        let array = null
+        if(data){
+            array = data.filter(function(a){
+                return a.followers.includes(id) ? a : null
+            })
+        }else{
+            array = users.filter(function(a){
+                return a.followers.includes(id) ? a : null
+            })
+        }
+        return setFollowing(array)
     }
     return (
         <div className='userListContainer'>
@@ -98,21 +112,17 @@ function Followers() {
             </div>
             {users &&
                 users.map((user) => (
-                    (user.followers.includes(id)) ? 
                     <div className='userFollow' key={user._id}>
                         <div className='userInfo'>
                             <span>{user.username}</span>
                             <p>{user.bio}</p>
                         </div>
-                        <button onClick={() => unfollow(user._id)} >Unfollow</button>
-                    </div>
-                    :
-                    <div className='userFollow' key={user._id}>
-                        <div className='userInfo'>
-                            <span>{user.username}</span>
-                            <p>{user.bio}</p>
-                        </div>
-                        <button onClick={() => follow(user._id)} >Follow</button>
+                        {following.includes(user) &&
+                            <button onClick={() => unfollow(user)}>Unfollow</button>
+                        }
+                        {!following.includes(user) &&
+                            <button onClick={() => follow(user)}>Follow</button>
+                        }
                     </div>
                 ))
             }
@@ -121,3 +131,4 @@ function Followers() {
 }
 
 export default Followers
+

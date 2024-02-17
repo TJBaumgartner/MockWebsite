@@ -7,15 +7,12 @@ function Discover() {
     const id = localStorage.getItem('userID')
     const name = localStorage.getItem('name')
     const [users, setUsers] = useState()
-    const [followSent, setFollowSent] = useState(false)
+    // const [followSent, setFollowSent] = useState(false)
+    const [following, setFollowing] = useState([])
 
     useEffect(() => {
-        console.log('hi')
-        setInterval(() => {
-            loadUsers()
-        }, 100)
-        clearInterval()
-    }, [followSent])
+        loadUsers()
+    }, [])
 
     const loadUsers = () => {
         const data = {id}
@@ -43,11 +40,27 @@ function Discover() {
             body: JSON.stringify(data)
         })
         .then((response) => {
-            setFollowSent(true)
             return response.json()
         })
+        setFollowing([...following, user])
     }
     
+    const unfollow = (user) => {
+
+        const data = {id, user}
+        fetch('http://localhost:5000/api/user/unfollow', {
+            method: 'POST',
+            headers: {"Content-type": "application/json"},
+            body: JSON.stringify(data)
+        })
+        .then((response) => {
+            return response.json()
+        })
+        setFollowing(following.filter(function(following){
+            return following !== user
+        }))
+    }
+
     return (
         <div className='userListContainer'>
             <div className='followTabs'>
@@ -71,7 +84,12 @@ function Discover() {
                             <span>{user.username}</span>
                             <p>{user.bio}</p>
                         </div>
-                        <button onClick={() => follow(user._id)} >Follow</button>
+                        {following.includes(user._id) &&
+                            <button onClick={() => unfollow(user._id)}>Unfollow</button>
+                        }
+                        {!following.includes(user._id) &&
+                            <button onClick={() => follow(user._id)}>Follow</button>
+                        }
                     </div>
                 ))
             }

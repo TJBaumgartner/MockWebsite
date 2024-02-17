@@ -59,15 +59,15 @@ exports.index = asyncHandler(async (req,res) => {
 
 exports.discoverList = asyncHandler(async (req,res) => {
     const allUsers = await User.find().where({'followers': {"$ne": req.body.id}}).sort({followers: -1}).exec()
-    res.status(200).json(allUsers)
+    res.status(200).json(allUsers).end()
 })
 exports.followerList = asyncHandler(async (req,res) => {
     const allUsers = await User.findOne({_id: req.body.id}).populate('followers').sort({followers: -1}).exec()
-    res.status(200).json(allUsers)
+    res.status(200).json(allUsers).end()
 })
 exports.followingList = asyncHandler(async (req,res) => {
     const allUsers = await User.findOne({_id: req.body.id}).populate('following').populate('followers').sort({followers: -1}).exec()
-    res.status(200).json(allUsers)
+    res.status(200).json(allUsers).end()
 })
 
 exports.follow = asyncHandler(async (req,res) => {
@@ -77,6 +77,9 @@ exports.follow = asyncHandler(async (req,res) => {
     ])
     if(currentUser == null || userToFollow == null){
         return res.status(401)
+    }
+    if(currentUser.following.includes(userToFollow)){
+        return res.status(401).json('Already following')
     }
     await Promise.all([
         User.findByIdAndUpdate(
@@ -89,7 +92,7 @@ exports.follow = asyncHandler(async (req,res) => {
         })
     ])
 
-    res.status(200)
+    res.sendStatus(200)
 })
 exports.unfollow = asyncHandler(async (req,res) => {
     const [currentUser, userToUnfollow] = await Promise.all([
