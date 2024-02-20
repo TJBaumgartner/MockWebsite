@@ -95,3 +95,20 @@
 .followTabs p{
   font-size: 1.2rem;
 }
+.postContainer{
+  background-color: rgb(65, 65, 65);
+  color: white;
+  padding: 10px;
+  border: 1px solid gray;
+}
+.postBottom{
+  display: flex;
+  flex-direction: row;
+}
+.postTop{
+  display: flex;
+  flex-direction: row;
+}
+.postTop h1{
+  font-size: 1.2rem;
+}

@@ -25,7 +25,6 @@ function Following() {
             return response.json()
         })
         .then((data) => {
-            console.log(data.following)
             setUsers(data.following)
             setFollowRequest(false)
         }) 

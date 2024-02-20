@@ -8,6 +8,8 @@ const CommentSchema = new Schema({
     date: {type: Date, default: Date.now()},
     post: [{type: Schema.Types.ObjectId, ref: "Post"}],
     user: [{type: Schema.Types.ObjectId, ref: "User"}],
-});
+},
+{ timestamps: true }
+);
 
 module.exports = mongoose.model("Comment", CommentSchema);

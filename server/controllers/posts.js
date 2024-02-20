@@ -22,12 +22,16 @@ exports.post_create_post = asyncHandler(async(req,res,next) => {
 })
 
 exports.post_list = asyncHandler(async (req, res, next) => {
-    const posts = await Post.find()
+    const userArray = req.body
+    console.log(userArray)
+    const posts = await Post.find({user: {$in:req.body}}).populate("user").sort({createdAt: -1})
     if(posts == null){
         return res.sendStatus(401)
     }
     res.status(200).json(posts)
 });
+
+
 
 exports.post_detail_get = asyncHandler(async (req, res, next) => {
     const postDetail = await Post.findById(req.params.id).exec();

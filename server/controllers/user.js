@@ -40,7 +40,7 @@ exports.create_fake_post = asyncHandler(async (req,res) => {
     const post = new Post({
         message: randomWords,
         likes: randomLikes,
-        date: randomDate,
+        createdAt: randomDate,
         user: user._id
     })
     await post.save()
