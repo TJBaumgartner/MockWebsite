@@ -69,7 +69,13 @@ exports.followingList = asyncHandler(async (req,res) => {
     const allUsers = await User.findOne({_id: req.body.id}).populate('following').populate('followers').sort({followers: -1}).exec()
     res.status(200).json(allUsers).end()
 })
-
+exports.userLikes = asyncHandler(async (req,res) => {
+    const allLikes = await User.find({_id: req.body.id})
+    if(allLikes == null){
+        return res.sendStatus(400)
+    }
+    res.status(200).json(allLikes).end()
+})
 exports.follow = asyncHandler(async (req,res) => {
     const [currentUser, userToFollow] = await Promise.all([
         User.findOne({_id: req.body.id}),

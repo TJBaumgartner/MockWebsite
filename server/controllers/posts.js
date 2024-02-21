@@ -22,7 +22,6 @@ exports.post_create_post = asyncHandler(async(req,res,next) => {
 })
 
 exports.post_list = asyncHandler(async (req, res, next) => {
-    const userArray = req.body
     const posts = await Post.find({
         $or:[{user: {$in:req.body.followData}}, {user: req.body.id}]})
         .populate("user")
@@ -30,10 +29,52 @@ exports.post_list = asyncHandler(async (req, res, next) => {
     if(posts == null){
         return res.sendStatus(401)
     }
-    res.status(200).json(posts)
+    res.json(posts)
 });
 
-
+exports.like_post = asyncHandler(async (req, res, next) => {
+    const [post, user] = await Promise.all([
+        Post.findOne({_id: req.body.post}),
+        User.findOne({_id: req.body.user}),
+    ])
+    if(post == null || user == null){
+        return res.status(401)
+    }
+    if(user.likes.includes(req.body.post)){
+        return res.status(400).json('already liked')
+    }
+    await Promise.all([
+        User.findByIdAndUpdate(
+            {_id: req.body.user }, 
+            { $push: { likes: req.body.post}
+        }),
+        Post.findByIdAndUpdate(
+            {_id: req.body.post }, 
+            {$inc: {likes: 1}}
+        )
+    ])
+    res.sendStatus(200)
+});
+exports.unlike_post = asyncHandler(async (req,res) => {
+    const [post, user] = await Promise.all([
+        Post.findOne({_id: req.body.post}),
+        User.findOne({_id: req.body.user}),
+    ])
+    if(post == null || user == null){
+        return res.status(401)
+    }
+    await Promise.all([
+        User.findByIdAndUpdate(
+            {_id: req.body.user }, 
+            { $pull: { likes: req.body.post}
+        }),
+        Post.findByIdAndUpdate(
+            {_id: req.body.post }, 
+            {$inc: {likes: -1}}
+        )
+    ])
+    res.sendStatus(200)
+})
 
 exports.post_detail_get = asyncHandler(async (req, res, next) => {
     const postDetail = await Post.findById(req.params.id).exec();

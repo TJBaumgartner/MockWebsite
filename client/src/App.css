@@ -12,6 +12,18 @@
   display: grid;
   grid-template-columns: 2fr 3fr 2fr;
 }
+/* 
+POST CREATE FORM
+POST CREATE FORM
+POST CREATE FORM
+POST CREATE FORM
+POST CREATE FORM
+POST CREATE FORM
+POST CREATE FORM
+POST CREATE FORM
+POST CREATE FORM
+POST CREATE FORM
+*/
 .postFormContainer{
   position: absolute;
   left: 50%;
@@ -69,6 +81,20 @@
 .loginWrapper{
   grid-column: 1/4;
 }
+/*
+FOLLOWER/FOLLOWING LIST
+FOLLOWER/FOLLOWING LIST
+FOLLOWER/FOLLOWING LIST
+FOLLOWER/FOLLOWING LIST
+FOLLOWER/FOLLOWING LIST
+FOLLOWER/FOLLOWING LIST
+FOLLOWER/FOLLOWING LIST
+FOLLOWER/FOLLOWING LIST
+FOLLOWER/FOLLOWING LIST
+FOLLOWER/FOLLOWING LIST
+FOLLOWER/FOLLOWING LIST
+FOLLOWER/FOLLOWING LIST
+*/
 .userFollow{
   display: flex;
   justify-content: space-between;
@@ -76,10 +102,7 @@
 .userFollow{
   margin-bottom: 10px;
 }
-.userInfo{
-
-}
-.userListContainer{
+.followListContainer{
   max-width: 600px;
   background-color: gray;
   color: white;
@@ -91,10 +114,21 @@
   justify-content: space-between;
   font-weight: 700;
   margin-bottom: 20px;
-}
-.followTabs p{
   font-size: 1.2rem;
 }
+
+
+/* 
+POST CARD + CONTAINER
+POST CARD + CONTAINER
+POST CARD + CONTAINER
+POST CARD + CONTAINER
+POST CARD + CONTAINER
+POST CARD + CONTAINER
+POST CARD + CONTAINER
+POST CARD + CONTAINER
+POST CARD + CONTAINER
+*/
 .postContainer{
   background-color: rgb(65, 65, 65);
   color: white;
@@ -110,5 +144,34 @@
   flex-direction: row;
 }
 .postTop h1{
+  font-size: 1.2rem;
+}
+.likedPost {
+  color: red;
+}
+/* 
+REPLIES/LIKES/POSTS - USER
+REPLIES/LIKES/POSTS - USER
+REPLIES/LIKES/POSTS - USER
+REPLIES/LIKES/POSTS - USER
+REPLIES/LIKES/POSTS - USER
+REPLIES/LIKES/POSTS - USER
+REPLIES/LIKES/POSTS - USER
+REPLIES/LIKES/POSTS - USER
+REPLIES/LIKES/POSTS - USER
+REPLIES/LIKES/POSTS - USER
+*/
+.userListContainer{
+  max-width: 600px;
+  background-color: gray;
+  color: white;
+  padding: 1.2rem;
+}
+.userTabs{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: 700;
+  margin-bottom: 20px;
   font-size: 1.2rem;
 }

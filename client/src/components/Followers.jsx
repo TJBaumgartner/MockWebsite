@@ -3,21 +3,7 @@ import '../App.css'
 import { Link } from 'react-router-dom'
 
 function Followers() {
-
-/**
- * 
- * 
- * 
- *  WORKING ON FOLLOW BUTTON CHANGING TO UNFOLLOW
- * 
- * 
- * 
- * 
- * 
- */
-
-
-
+    
     const id = localStorage.getItem('userID')
     const [users, setUsers] = useState()
     const [following, setFollowing] = useState([])
@@ -98,7 +84,7 @@ function Followers() {
         return setFollowing(array)
     }
     return (
-        <div className='userListContainer'>
+        <div className='followListContainer'>
             <div className='followTabs'>
             <Link to={'/discover'}>
                 <p>Discover</p>

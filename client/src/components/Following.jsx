@@ -46,7 +46,7 @@ function Following() {
     }
     
     return (
-        <div className='userListContainer'>
+        <div className='followListContainer'>
             <div className='followTabs'>
             <Link to={'/discover'}>
                 <p>Discover</p>

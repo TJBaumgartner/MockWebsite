@@ -2,17 +2,13 @@
 
 import { Link } from "react-router-dom";
 import {useState, useEffect} from 'react'
-import { useNavigate } from 'react-router-dom';
 
 const Navbar = (props) => {
-    // const navigate = useNavigate()
     const loggedIn = props.loggedIn
-    const setLoggedIn = props.setLoggedIn
     const logout = props.logout
 
     const id = localStorage.getItem('userID')
 
-    const navigate = useNavigate()
     const [displayForm, setDisplayForm] = useState(false)
     const [message, setMessage] = useState('')
 
@@ -85,7 +81,7 @@ const Navbar = (props) => {
                             }
                         </div>
                         <div>
-                            <h1>{name} <button onClick={()=> logout()} className="logout">Logout</button></h1>
+                            <h1><button onClick={()=> logout()} className="logout">Logout</button></h1>
                         </div>
                     </div>
                 }

@@ -62,17 +62,17 @@ function Discover() {
     }
 
     return (
-        <div className='userListContainer'>
+        <div className='followListContainer'>
             <div className='followTabs'>
-            <Link to={'/discover'}>
-                <p>Discover</p>
-            </Link>
-            <Link to={'/followers'}>
-                <p>Followers</p>
-            </Link>
-            <Link to={'/following'}>
-                <p>Following</p>
-            </Link>
+                <Link to={'/discover'}>
+                    <p>Discover</p>
+                </Link>
+                <Link to={'/followers'}>
+                    <p>Followers</p>
+                </Link>
+                <Link to={'/following'}>
+                    <p>Following</p>
+                </Link>
             </div>
             {users &&
                 users.map((user) => (
