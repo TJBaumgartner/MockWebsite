@@ -59,10 +59,11 @@ function HomePage() {
         .then((user) => {
             
             const followData = user.following
+            const data = {followData, id}
             fetch(`http://localhost:5000/api/homepage/posts`, {   
                 method: 'POST',     
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(followData)
+                body: JSON.stringify(data)
             })
             .then((response) => {
                 return response.json()
@@ -72,6 +73,7 @@ function HomePage() {
             }) 
         })
     }, [])
+
 
     // const fakeUser = () => {
     //     fetch('http://localhost:5000/api/createFake', {
@@ -94,10 +96,7 @@ function HomePage() {
 
     return (
         <div className='homepageContainer'>
-            <h1>Made it to the homepage</h1>
-            {posts &&
-                <button onClick={() => console.log(posts)}>Click me</button>
-            }            
+            <h1>Made it to the homepage</h1>     
             {posts &&
                 posts.map((post) => (
                     <div className='postContainer' key={post._id}>

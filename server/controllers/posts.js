@@ -23,8 +23,10 @@ exports.post_create_post = asyncHandler(async(req,res,next) => {
 
 exports.post_list = asyncHandler(async (req, res, next) => {
     const userArray = req.body
-    console.log(userArray)
-    const posts = await Post.find({user: {$in:req.body}}).populate("user").sort({createdAt: -1})
+    const posts = await Post.find({
+        $or:[{user: {$in:req.body.followData}}, {user: req.body.id}]})
+        .populate("user")
+        .sort({createdAt: -1})
     if(posts == null){
         return res.sendStatus(401)
     }
