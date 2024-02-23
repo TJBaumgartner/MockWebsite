@@ -7,39 +7,32 @@ import moment from "moment";
 
 function HomePage() {
     
+
+
+/*
+LIKE/UNLIKE BUTTON RERENDER
+LIKE/UNLIKE BUTTON RERENDER
+LIKE/UNLIKE BUTTON RERENDER
+LIKE/UNLIKE BUTTON RERENDER
+LIKE/UNLIKE BUTTON RERENDER
+LIKE/UNLIKE BUTTON RERENDER
+LIKE/UNLIKE BUTTON RERENDER
+LIKE/UNLIKE BUTTON RERENDER
+LIKE/UNLIKE BUTTON RERENDER
+LIKE/UNLIKE BUTTON RERENDER
+LIKE/UNLIKE BUTTON RERENDER
+LIKE/UNLIKE BUTTON RERENDER
+*/
+
+
+
+
     const navigate = useNavigate()
     const id = localStorage.getItem('userID')
 
     const [posts, setPosts] = useState()
     const [likes, setLikes] = useState([])
     const [likesLoaded, setLikesLoaded] = useState(false)
-    useEffect(() => {
-        async function fetchData(){
-            try{
-                const data = await loadPosts()
-                setPosts(data)
-                fetchLikes(data)
-                setLikesLoaded(true)
-            } catch (e) {
-                console.error(e)
-            }
-        }
-        fetchData()
-    }, [])
-    const fetchLikes = () => {
-        const data = {id}
-        fetch(`http://localhost:5000/api/user/likes`, {   
-            method: 'POST',     
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data)
-        })
-        .then((response) => {
-            return response.json()
-        })
-        .then((data) => {
-            setLikes(data[0].likes)
-        }) 
-    }
     useEffect(() => {
         fetch('http://localhost:5000/api/homepage', {        
             headers: {
@@ -86,6 +79,34 @@ function HomePage() {
         })
     }
 
+    useEffect(() => {
+        async function fetchData(){
+            try{
+                const data = await loadPosts()
+                fetchLikes(data)
+                setLikesLoaded(true)
+            } catch (e) {
+                console.error(e)
+            }
+        }
+        fetchData()
+    }, [])
+    
+    const fetchLikes = () => {
+        const postData = posts
+        const data = {id, postData}
+        fetch(`http://localhost:5000/api/user/likes`, {   
+            method: 'POST',     
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        })
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            setLikes(data[0].likes)
+        }) 
+    }
 
     // const fakeUser = () => {
     //     fetch('http://localhost:5000/api/createFake', {
@@ -105,8 +126,7 @@ function HomePage() {
     //         console.log('Post Created')
     //     })
     // }
-    const likePost = (event, post) =>{
-        // event.target.style.color = "red"
+    const likePost = (post) =>{
         const user = id
         const data = {post, user}
         fetch(`http://localhost:5000/api/homepage/posts/${post}/like`, {   
@@ -117,9 +137,10 @@ function HomePage() {
         .then((response) => {
             return response.json()
         })
+        loadPosts()
+        return setLikes([...likes, post])
     }
-    const unlikePost = (event, post) =>{
-        // event.target.style.color = "red"
+    const unlikePost = (post) =>{
         const user = id
         const data = {post, user}
         fetch(`http://localhost:5000/api/homepage/posts/${post}/unlike`, {   
@@ -130,14 +151,16 @@ function HomePage() {
         .then((response) => {
             return response.json()
         })
+        loadPosts()
+        setLikes(likes.filter(function(likes){
+            return likes !== post
+        }))
     }
     return (
         <div className='homepageContainer'>
             <h1>Made it to the homepage</h1>     
             {posts && likesLoaded &&
                 posts.map((post) => (
-                    (likes.includes(post._id)) 
-                    ? 
                     <div className='postContainer' key={post._id}>
                         <div className='postTop'>
                             <h1>{post.user[0].username}</h1> 
@@ -145,22 +168,15 @@ function HomePage() {
                         </div>
                         <p>{post.message}</p>
                         <div className='postBottom'>
-                            <span onClick={(e) => unlikePost(e, post._id)} className='likedPost'>{post.likes}<i className="fa fa-heart"></i></span>
+                            {likes.includes(post._id) &&
+                                <span onClick={() => unlikePost(post._id)} className='likedPost'>{post.likes}<i className="fa fa-heart"></i></span>                            
+                            }
+                            {!likes.includes(post._id) &&
+                                <span onClick={() => likePost(post._id)}>{post.likes}<i className="fa fa-heart"></i></span>                            
+                            }
                             <i className="fa fa-comment"></i>
                         </div>
                     </div>  
-                    :
-                    <div className='postContainer' key={post._id}>
-                        <div className='postTop'>
-                            <h1>{post.user[0].username}</h1> 
-                            {moment(post.createdAt, 'YYYY-MM-DD hh:mm:ss').format('MM/DD/YYYY')}      
-                        </div>
-                        <p>{post.message}</p>
-                        <div className='postBottom'>
-                            <span onClick={(e) => likePost(e, post._id)}>{post.likes}<i className="fa fa-heart"></i></span>
-                            <i className="fa fa-comment"></i>
-                        </div>
-                    </div> 
                 ))
             }
             {/* <button onClick={() => fakeUser()}>Create Random User</button> */}

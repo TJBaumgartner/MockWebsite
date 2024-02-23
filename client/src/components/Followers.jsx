@@ -3,7 +3,7 @@ import '../App.css'
 import { Link } from 'react-router-dom'
 
 function Followers() {
-    
+
     const id = localStorage.getItem('userID')
     const [users, setUsers] = useState()
     const [following, setFollowing] = useState([])
