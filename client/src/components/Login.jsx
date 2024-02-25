@@ -58,11 +58,9 @@ function Login(props) {
     return (
         <div className='loginWrapper'>
             <div className='loginContainer'>
-                <h1>Login</h1>
+                <h1>Sign in</h1>
                 <form action="" method='POST' onSubmit={handleSubmit} className='loginForm'>
-                    <label htmlFor='username'>Username</label>
                     <input type="text" name='text' id="username" value={username} placeholder='Username or Email' onChange={(e) => setUsername(e.target.value.replace(" ", ""))} required style={validationStyle}></input>
-                    <label htmlFor='password'>Password</label>
                     <input type="password" placeholder="Type your Password"name='password' id="password" value={password} onChange={(e) => setPassword(e.target.value.replace(" ", ""))} required style={validationStyle}></input>
                     {passwordError == true || usernameError == true &&
                         <h3>Password or Username is incorrect</h3>

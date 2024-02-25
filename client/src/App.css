@@ -46,6 +46,54 @@
 .logout{
   position: absolute;
 }
+.loginWrapper{
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  min-width: 600px;
+  min-height: 400px;
+  height: 650px;
+  background-color: rgb(71, 71, 71);
+  color: white;
+  border-radius: 5%;
+}
+.loginContainer{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+}
+.loginForm input{
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgb(43, 43, 43);
+  color: white;
+  font-size: 1.2rem;
+}
+.loginForm input::placeholder{
+  font-size: 1.2rem;
+  color: rgb(151, 151, 151);
+}
+.loginForm button{
+  width: 100%;
+  color: white;
+  background-color: rgb(43, 43, 43);
+  padding: 20px;
+  border-radius: 20px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  border: 2px solid black;
+}
+.loginForm, h1, input, div{
+  margin-bottom: 30px;
+}
+.loginContainer h1{
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
 /* 
 POST CREATE FORM
 POST CREATE FORM
@@ -113,9 +161,6 @@ POST CREATE FORM
 .postForm textarea::placeholder{
   color: white;
 }
-.loginWrapper{
-  grid-column: 1/4;
-}
 /*
 FOLLOWER/FOLLOWING LIST
 FOLLOWER/FOLLOWING LIST
@@ -165,7 +210,7 @@ POST CARD + CONTAINER
 POST CARD + CONTAINER
 */
 .postContainer{
-  background-color: rgb(65, 65, 65);
+  background-color: rgb(71, 71, 71);
   color: white;
   padding: 10px;
   border: 1px solid gray;
