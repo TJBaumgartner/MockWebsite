@@ -6,11 +6,13 @@ import HomePage from './components/Homepage';
 import Signup from './components/signup';
 import Login from './components/Login'
 import Index from './components/Index';
-import Profile from './components/Profile';
 import Navbar from './components/Navbar';
 import Discover from './components/Discover';
 import Followers from './components/Followers';
 import Following from './components/Following';
+import Likes from './components/Likes';
+import Replies from './components/Replies';
+import Posts from './components/Posts';
 
 function App() {   
   
@@ -66,9 +68,11 @@ function App() {
           <Route path="/following" element={<Following/>}/>
           <Route path="/discover" element={<Discover/>}/>
           <Route path="/followers" element={<Followers/>}/>
+          <Route path="/:id/posts" element={<Posts/>}/>
+          <Route path="/:id/replies" element={<Replies/>}/>
+          <Route path="/:id/likes" element={<Likes/>}/>
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} loggedIn={loggedIn} logout={logout}/>}/>
           <Route path="/user/create" element={<Signup/>}/>
-          <Route path="/:id/profile" element={<Profile/>}/>
         </Routes>
     </div>
   )

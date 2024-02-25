@@ -100,6 +100,14 @@ exports.follow = asyncHandler(async (req,res) => {
 
     res.sendStatus(200)
 })
+exports.posts_list = asyncHandler(async (req, res, next) => {
+    const posts = await Post.find({user: req.params.id})
+    if(posts == null){
+        return res.sendStatus(401)
+    }
+    res.json(posts)
+});
+
 exports.unfollow = asyncHandler(async (req,res) => {
     const [currentUser, userToUnfollow] = await Promise.all([
         User.findOne({_id: req.body.id}),

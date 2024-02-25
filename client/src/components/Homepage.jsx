@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import {useNavigate } from 'react-router-dom'
 import '../App.css'
 import 'font-awesome/css/font-awesome.min.css';
 import moment from "moment";    
@@ -7,27 +6,6 @@ import moment from "moment";
 
 function HomePage() {
     
-
-
-/*
-LIKE/UNLIKE BUTTON RERENDER
-LIKE/UNLIKE BUTTON RERENDER
-LIKE/UNLIKE BUTTON RERENDER
-LIKE/UNLIKE BUTTON RERENDER
-LIKE/UNLIKE BUTTON RERENDER
-LIKE/UNLIKE BUTTON RERENDER
-LIKE/UNLIKE BUTTON RERENDER
-LIKE/UNLIKE BUTTON RERENDER
-LIKE/UNLIKE BUTTON RERENDER
-LIKE/UNLIKE BUTTON RERENDER
-LIKE/UNLIKE BUTTON RERENDER
-LIKE/UNLIKE BUTTON RERENDER
-*/
-
-
-
-
-    const navigate = useNavigate()
     const id = localStorage.getItem('userID')
 
     const [posts, setPosts] = useState()
@@ -95,7 +73,7 @@ LIKE/UNLIKE BUTTON RERENDER
     const fetchLikes = () => {
         const postData = posts
         const data = {id, postData}
-        fetch(`http://localhost:5000/api/user/likes`, {   
+        fetch(`http://localhost:5000/api/user/getLikes`, {   
             method: 'POST',     
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
@@ -107,25 +85,6 @@ LIKE/UNLIKE BUTTON RERENDER
             setLikes(data[0].likes)
         }) 
     }
-
-    // const fakeUser = () => {
-    //     fetch('http://localhost:5000/api/createFake', {
-    //         method: 'POST',
-    //         headers: {"Content-Type": "application/json"},
-    //     })
-    //     .then(() => {
-    //         console.log('Post Created')
-    //     })
-    // }
-    // const fakePost = () => {
-    //     fetch('http://localhost:5000/api/createFakePost', {
-    //         method: 'POST',
-    //         headers: {"Content-Type": "application/json"},
-    //     })
-    //     .then(() => {
-    //         console.log('Post Created')
-    //     })
-    // }
     const likePost = (post) =>{
         const user = id
         const data = {post, user}
@@ -158,7 +117,6 @@ LIKE/UNLIKE BUTTON RERENDER
     }
     return (
         <div className='homepageContainer'>
-            <h1>Made it to the homepage</h1>     
             {posts && likesLoaded &&
                 posts.map((post) => (
                     <div className='postContainer' key={post._id}>
@@ -169,20 +127,42 @@ LIKE/UNLIKE BUTTON RERENDER
                         <p>{post.message}</p>
                         <div className='postBottom'>
                             {likes.includes(post._id) &&
-                                <span onClick={() => unlikePost(post._id)} className='likedPost'>{post.likes}<i className="fa fa-heart"></i></span>                            
+                                <span onClick={() => unlikePost(post._id)} className='likedPost'><i className="fa fa-heart"></i>{post.likes}</span>                            
                             }
                             {!likes.includes(post._id) &&
-                                <span onClick={() => likePost(post._id)}>{post.likes}<i className="fa fa-heart"></i></span>                            
+                                <span onClick={() => likePost(post._id)} className='unlikedPost'><i className="fa fa-heart"></i>{post.likes}</span>                            
                             }
                             <i className="fa fa-comment"></i>
                         </div>
                     </div>  
                 ))
             }
-            {/* <button onClick={() => fakeUser()}>Create Random User</button> */}
-            {/* <button onClick={() => fakePost()}>Create Random Post</button> */}
         </div>
     )
 }
 
 export default HomePage
+
+
+
+    // const fakeUser = () => {
+    //     fetch('http://localhost:5000/api/createFake', {
+    //         method: 'POST',
+    //         headers: {"Content-Type": "application/json"},
+    //     })
+    //     .then(() => {
+    //         console.log('Post Created')
+    //     })
+    // }
+    // const fakePost = () => {
+    //     fetch('http://localhost:5000/api/createFakePost', {
+    //         method: 'POST',
+    //         headers: {"Content-Type": "application/json"},
+    //     })
+    //     .then(() => {
+    //         console.log('Post Created')
+    //     })
+    // }
+
+                {/* <button onClick={() => fakeUser()}>Create Random User</button> */}
+            {/* <button onClick={() => fakePost()}>Create Random Post</button> */}

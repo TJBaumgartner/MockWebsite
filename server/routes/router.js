@@ -16,7 +16,13 @@ router.post("/user/unfollow", user.unfollow);
 
 router.post("/user/follow", user.follow);
 
-router.post("/user/likes", user.userLikes);
+router.post("/user/:id/posts", user.posts_list);
+// router.post("user/posts", user.posts_list);
+// router.post("/:id/replies", user.replies_list);
+
+// router.post("/:id/likes", user.likes_list);
+
+router.post("/user/getLikes", user.userLikes);
 
 router.post("/login", user.login);
 
@@ -29,6 +35,7 @@ router.get("/homepage", authenticate, user.index);
 router.post("/homepage/posts", post.post_list);
 
 router.post("/homepage/posts/:id/like", post.like_post);
+
 router.post("/homepage/posts/:id/unlike", post.unlike_post);
 
 router.post("/post/create", post.post_create_post);

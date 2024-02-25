@@ -2,14 +2,17 @@
 
 import { Link } from "react-router-dom";
 import {useState, useEffect} from 'react'
+import 'font-awesome/css/font-awesome.min.css';
 
 const Navbar = (props) => {
     const loggedIn = props.loggedIn
     const logout = props.logout
 
     const id = localStorage.getItem('userID')
+    const name = localStorage.getItem('name')
 
     const [displayForm, setDisplayForm] = useState(false)
+    const [displayLogout, setDisplayLogout] = useState(false)
     const [message, setMessage] = useState('')
 
     const displayPostForm = () => {
@@ -31,9 +34,13 @@ const Navbar = (props) => {
     }
     const closePostForm = () => {
         setDisplayForm(false)
+        setDisplayLogout(false)
         setMessage('')
     }
-
+    const closeLogout = () => {
+        setDisplayLogout(false)
+        logout()
+    }
 
     return (
         <div className="navContainer"> 
@@ -42,21 +49,23 @@ const Navbar = (props) => {
                     <div className="Navbar"> 
                         <div>
                             <Link to={'/homepage'}>
-                                <h1>Hompage</h1>
+                                <h1><i className="fa fa-home"></i>Hompage</h1>
                             </Link>
                             <Link to={'/discover'}>
-                                <h1>Explore</h1>
+                            <h1><i className="fa fa-search"></i>Explore</h1>
                             </Link>
                             <Link to={{
-                                pathname: `/${id}/profile`,
+                                pathname: `/${id}/posts`,
                                 }}
                                 >
-                                <h1>Profile</h1>
+                                <h1><i className="fa fa-user"></i>Profile</h1>
                             </Link>
                         </div>
                         <div>
-                            <button onClick={() => displayPostForm()}>Post</button>
+                            <button onClick={() => displayPostForm()} className="postButton">Post</button>
                             {displayForm == true &&
+                            <div>
+                                <div className='postFormBackground' onClick={() => closePostForm()}></div>
                                 <div className='postFormContainer'>
                                     <span onClick={() => closePostForm()}>X</span>
                                     <form className="postForm" action="" method="POST" onSubmit={createPost}>
@@ -78,10 +87,20 @@ const Navbar = (props) => {
                                         }
                                     </form>  
                                 </div> 
+                            </div>
                             }
                         </div>
-                        <div>
-                            <h1><button onClick={()=> logout()} className="logout">Logout</button></h1>
+                        <div className="logoutContainer">
+                            <div className="logoutDisplay">
+                                <h1>{name}</h1>
+                                <i class="fa fa-bars" onClick={() => setDisplayLogout(true)}></i>
+                            </div>
+                            {displayLogout &&
+                            <div>
+                                <div className='postFormBackground' onClick={() => closePostForm()}></div>
+                                <button onClick={()=> closeLogout()} className="logout">Logout</button>
+                            </div>
+                            }
                         </div>
                     </div>
                 }
