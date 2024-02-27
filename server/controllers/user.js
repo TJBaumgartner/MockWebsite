@@ -76,6 +76,13 @@ exports.userLikes = asyncHandler(async (req,res) => {
     }
     res.status(200).json(allLikes).end()
 })
+exports.liked_posts_list = asyncHandler(async (req,res) => {
+    const userLikes = await User.find({_id: req.params.id}).populate({path: 'likes', populate : {path: 'user'}})
+    if(userLikes == null){
+        return res.sendStatus(400)
+    }
+    res.status(200).json(userLikes).end()
+})
 exports.follow = asyncHandler(async (req,res) => {
     const [currentUser, userToFollow] = await Promise.all([
         User.findOne({_id: req.body.id}),

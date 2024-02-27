@@ -53,7 +53,7 @@ exports.like_post = asyncHandler(async (req, res, next) => {
             {$inc: {likes: 1}}
         )
     ])
-    res.sendStatus(200)
+    res.sendStatus(200).end()
 });
 exports.unlike_post = asyncHandler(async (req,res) => {
     const [post, user] = await Promise.all([
@@ -73,7 +73,7 @@ exports.unlike_post = asyncHandler(async (req,res) => {
             {$inc: {likes: -1}}
         )
     ])
-    res.sendStatus(200)
+    res.sendStatus(200).end()
 })
 
 exports.post_detail_get = asyncHandler(async (req, res, next) => {

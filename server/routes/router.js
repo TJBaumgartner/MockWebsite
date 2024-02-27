@@ -17,6 +17,9 @@ router.post("/user/unfollow", user.unfollow);
 router.post("/user/follow", user.follow);
 
 router.post("/user/:id/posts", user.posts_list);
+
+router.post("/user/:id/likes", user.liked_posts_list);
+
 // router.post("user/posts", user.posts_list);
 // router.post("/:id/replies", user.replies_list);
 
