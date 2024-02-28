@@ -13,7 +13,7 @@ import Following from './components/Following';
 import Likes from './components/Likes';
 import Replies from './components/Replies';
 import Posts from './components/Posts';
-
+import PostDetail from './components/PostDetail';
 function App() {   
   
   const navigate = useNavigate()
@@ -68,6 +68,7 @@ function App() {
           <Route path="/following" element={<Following/>}/>
           <Route path="/discover" element={<Discover/>}/>
           <Route path="/followers" element={<Followers/>}/>
+          <Route path="/post/:id/detail" element={<PostDetail/>}/>
           <Route path="/:id/posts" element={<Posts/>}/>
           <Route path="/:id/replies" element={<Replies/>}/>
           <Route path="/:id/likes" element={<Likes/>}/>

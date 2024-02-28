@@ -1,6 +1,6 @@
 const Post = require('../models/posts')
 const User = require('../models/user')
-
+const Comment = require('../models/comments')
 const asyncHandler = require("express-async-handler");
 
 exports.post_create_get = asyncHandler(async (req, res, next) => {

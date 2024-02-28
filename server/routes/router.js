@@ -3,6 +3,7 @@ var router = express.Router();
 const user = require('../controllers/user');
 const post = require('../controllers/posts')
 const authenticate = require('../controllers/authenticate');
+const comments = require('../controllers/comments');
 
 router.post("/user/create", user.sign_up);
 
@@ -41,7 +42,11 @@ router.post("/homepage/posts/:id/like", post.like_post);
 
 router.post("/homepage/posts/:id/unlike", post.unlike_post);
 
+router.get("/post/:id/comments", comments.comments_get);
+
 router.post("/post/create", post.post_create_post);
+
+router.post("/post/:id/reply", comments.post_reply);
 
 router.post("/createFake", user.create_fake);
 
