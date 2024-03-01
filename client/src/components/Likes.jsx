@@ -60,6 +60,7 @@ function Likes() {
     
     return (
         <div className='userListContainer'>
+            <EditProfile/>
             <UserTabs/>
             {posts &&
                 posts.map((post) => (

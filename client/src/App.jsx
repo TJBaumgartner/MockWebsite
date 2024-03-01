@@ -62,6 +62,7 @@ function App() {
   return (
     <div className='AppContainer'>
         <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} logout={logout}/>
+        <div className='contentContainer'>
         <Routes>
           <Route path="/" element={<Index/>}/>
           <Route path="/homepage" element={<HomePage logout={logout}/>}/>
@@ -75,6 +76,8 @@ function App() {
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} loggedIn={loggedIn} logout={logout}/>}/>
           <Route path="/user/create" element={<Signup/>}/>
         </Routes>
+        </div>
+        <div className='rightSide'></div>
     </div>
   )
 }

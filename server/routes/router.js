@@ -54,6 +54,8 @@ router.post("/createFakePost", user.create_fake_post);
 
 router.post("/profile/:id", user.user_get);
 
+router.post("/profile/:id/edit", user.user_edit);
+
 
 // router.post("/user/:id/allMessages",authenticate, message.allMessages);
 

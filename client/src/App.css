@@ -14,13 +14,51 @@
   padding: 0% 10% 0% 10%;
   background-color: rgb(44, 44, 44);
   min-height: 100vh;
+  height: 100%;
+}
+.contentContainer{
+  grid-column: 2/3;
+}
+.homepageContainer{
+  margin-top: 10px;
+  overflow: auto;
+  grid-column: 2/3;
+  border: 2px solid gray
+}
+.homepageHeader{
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+}
+.homepageLinks{
+  height: 100%;
+  display: flex;
+  padding-top: 50px;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.navContainer{
+  position: fixed;
+  grid-column: 1/2;
+}
+.rightSide{
+  overflow: hidden;
+  grid-column: 3/4;
 }
 .Navbar{
-  width: 80%;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   margin: auto;
 }
 .Navbar a{
+  font-size: 1.6em;
   color: white;
+}
+.Navbar .fa{
+  margin-right: 1em;
 }
 .logoutContainer{
   color: white;
@@ -35,14 +73,7 @@
   margin-left: .5rem;
   padding-top: 1.2rem;
 }
-.postFormBackground{
-  position: absolute;
-  top:0;
-  left: 0%;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(39, 39, 39, 0.226);
-}
+
 .logout{
   position: absolute;
 }
@@ -86,7 +117,13 @@
   font-weight: 700;
   border: 2px solid black;
 }
-.loginForm, h1, input, div{
+.loginForm h1{
+  margin-bottom: 30px;
+}
+.loginForm div{
+  margin-bottom: 30px;
+}
+.loginForm input{
   margin-bottom: 30px;
 }
 .loginContainer h1{
@@ -107,7 +144,7 @@ POST CREATE FORM
 POST CREATE FORM
 */
 .postFormContainer{
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 50%;
   min-width: 600px;
@@ -121,6 +158,14 @@ POST CREATE FORM
   display: flex;
   flex-direction: column;
 }
+.postFormBackground{
+  position: fixed;
+  top:0;
+  left: 0%;
+  width: 100%;
+  height: 10000px;
+  background-color: rgba(39, 39, 39, 0.226);
+}
 .postFormContainer span{
   width: 30px;
   flex: 0 0 30px;
@@ -130,6 +175,9 @@ POST CREATE FORM
 .postForm{
   display: flex;
   flex-direction: column;
+}
+.reltative{
+  position: relative;
 }
 .postForm button{
   max-width: 15%;
@@ -241,6 +289,7 @@ POST CARD + CONTAINER
 }
 .postTop h1{
   font-size: 1.2rem;
+  margin-right: 5px;
 }
 .likedPost {
   color: red;

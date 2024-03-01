@@ -153,6 +153,7 @@ function HomePage() {
 
     return (
         <div className='homepageContainer'>
+            <h1 className='homepageHeader'>Your Timeline</h1>
             {posts && likesLoaded &&
                 posts.map((post) => (
                     <div className='postContainer' key={post._id} onClick={(e) => postDetail(e, post._id)}>

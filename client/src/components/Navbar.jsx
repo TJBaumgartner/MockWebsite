@@ -47,18 +47,18 @@ const Navbar = (props) => {
             <div>
                 {loggedIn == true &&
                     <div className="Navbar"> 
-                        <div>
+                        <div className="homepageLinks">
                             <Link to={'/homepage'}>
-                                <h1><i className="fa fa-home"></i>Hompage</h1>
+                                <p><i className="fa fa-home"></i>Hompage</p>
                             </Link>
                             <Link to={'/discover'}>
-                            <h1><i className="fa fa-search"></i>Explore</h1>
+                            <p><i className="fa fa-search"></i>Explore</p>
                             </Link>
                             <Link to={{
                                 pathname: `/${id}/posts`,
                                 }}
                                 >
-                                <h1><i className="fa fa-user"></i>Profile</h1>
+                                <p><i className="fa fa-user"></i>Profile</p>
                             </Link>
                         </div>
                         <div>

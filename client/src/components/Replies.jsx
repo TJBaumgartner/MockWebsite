@@ -25,17 +25,7 @@ function Replies() {
     }, [])
     return (
         <div className='userListContainer'>
-            <div className='userTabs'>
-                <Link to={`/${id}/posts`}>
-                    <p>Posts</p>
-                </Link>
-                <Link to={`/${id}/replies`}>
-                    <p>Replies</p>
-                </Link>
-                <Link to={`/${id}/likes`}>
-                    <p>Likes</p>
-                </Link>
-            </div>
+            <UserTabs/>
             {posts &&
                 posts.map((post) => (
                     <div className='postContainer' key={post._id}>

@@ -27,7 +27,6 @@ function PostDetail() {
     }, [])
 
     const loadComments = () => {
-        console.log(id)
         fetch(`http://localhost:5000/api/post/${id}/comments`, {   
             method: 'GET',     
             headers: {

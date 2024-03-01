@@ -62,10 +62,29 @@ exports.user_get = asyncHandler(async (req,res) => {
     if(user == null){
         return res.status(401).json("User doesn't exist")
     }
-
-    res.status(200).json(user).end()
+    res.json(user)
 })
 
+exports.user_edit = asyncHandler(async (req,res) => {
+    const user = await User.findOne({_id: req.body.id})
+    if(user == null){
+        return res.send(401).json('No users found')
+    }
+    const updatedUser = new User({
+        username: user.username,
+        email: user.email,
+        password: user.password,
+        bio: req.body.bio,
+        followers: user.followers,
+        following: user.following,
+        likes: user.likes,
+        user: user.user,
+        about: req.body.about,
+        _id: user._id
+    })
+    await User.findOneAndUpdate({_id: req.body.id}, updatedUser)
+    res.json(updatedUser)
+})
 
 
 exports.discoverList = asyncHandler(async (req,res) => {

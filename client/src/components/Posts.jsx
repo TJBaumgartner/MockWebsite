@@ -10,23 +10,6 @@ function Posts() {
     const id = localStorage.getItem('userID')
 
     const [posts, setPosts] = useState()
-    
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/api/user/${id}/posts`, {   
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             Authorization: 'Bearer ' + localStorage.getItem('access')
-    //         },
-    //         body: JSON.stringify(id)
-    //     })
-    //     .then((response) => {
-    //         return response.json()
-    //     })
-    //     .then((data => {
-    //         setPosts(data)
-    //     }))
-    // }, [])
     useEffect(() => {
         const data = {id}
         fetch(`http://localhost:5000/api/user/${id}/posts`, {   
@@ -45,6 +28,7 @@ function Posts() {
     }, [])
     return (
         <div className='userListContainer'>
+            <EditProfile/>
             <UserTabs/>
             {posts &&
                 posts.map((post) => (
