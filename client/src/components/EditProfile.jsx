@@ -49,11 +49,13 @@ function EditProfile() {
     <div>
         {user && 
             <div>
-                <h1>{user.username}</h1>
+                <div className='userHeader'>
+                    <h1>{user.username}</h1>
+                    <button className='editButton' onClick={() => setDisplayForm(true)}>Edit Profile</button>
+                </div>
                 {displayForm == false &&
                 <div>
                     <p>{bio}</p>
-                    <button onClick={() => setDisplayForm(true)}>Edit Profile</button>
                 </div>
                 }
                 {displayForm == true &&

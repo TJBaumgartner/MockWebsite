@@ -86,7 +86,7 @@ function Followers() {
     }
     return (
         <div className='followListContainer'>
-            <ExploreTabs/>
+            <ExploreTabs currentTab={'followers'}/>
             {users &&
                 users.map((user) => (
                     <div className='userFollow' key={user._id}>

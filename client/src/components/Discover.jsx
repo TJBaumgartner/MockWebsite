@@ -63,7 +63,7 @@ function Discover() {
 
     return (
         <div className='followListContainer'>
-            <ExploreTabs/>
+            <ExploreTabs currentTab={'discover'}/>
             {users &&
                 users.map((user) => (
                     (user.username == name || user.followers.includes(id)) ?

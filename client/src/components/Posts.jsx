@@ -29,7 +29,7 @@ function Posts() {
     return (
         <div className='userListContainer'>
             <EditProfile/>
-            <UserTabs/>
+            <UserTabs currentTab={'posts'}/>
             {posts &&
                 posts.map((post) => (
                     <div className='postContainer' key={post._id}>

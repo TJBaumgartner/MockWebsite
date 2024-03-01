@@ -61,7 +61,7 @@ function Likes() {
     return (
         <div className='userListContainer'>
             <EditProfile/>
-            <UserTabs/>
+            <UserTabs  currentTab={'likes'}/>
             {posts &&
                 posts.map((post) => (
                     <div className='postContainer' key={post._id}>
