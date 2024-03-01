@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react'
 import '../App.css'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
+import EditProfile from './EditProfile'
+import UserTabs from './UserTabs'
+
 function Posts() {
 
     const id = localStorage.getItem('userID')
@@ -42,17 +45,7 @@ function Posts() {
     }, [])
     return (
         <div className='userListContainer'>
-            <div className='userTabs'>
-                <Link to={`/${id}/posts`}>
-                    <p>Posts</p>
-                </Link>
-                <Link to={`/${id}/replies`}>
-                    <p>Replies</p>
-                </Link>
-                <Link to={`/${id}/likes`}>
-                    <p>Likes</p>
-                </Link>
-            </div>
+            <UserTabs/>
             {posts &&
                 posts.map((post) => (
                     <div className='postContainer' key={post._id}>

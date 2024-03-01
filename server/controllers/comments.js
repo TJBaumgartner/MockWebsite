@@ -5,7 +5,7 @@ const asyncHandler = require("express-async-handler");
 
 exports.comments_get = asyncHandler(async (req, res, next) => {
     console.log(req.params.id)
-    const comments = await Comment.find({_id: req.params.id}).sort({createdAt: -1}).exec()
+    const comments = await Post.find({_id: req.params.id}).populate('comment').populate({path: 'comment', populate : {path: 'user'}}).populate('user').sort({createdAt: -1}).exec()
     if(comments == null){
         res.sendStatus(401)
     }

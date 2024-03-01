@@ -129,7 +129,6 @@ function HomePage() {
     }
     const createReply = (e) => {
         e.preventDefault();
-        console.log(currentPostId)
         const user = localStorage.getItem('userID')
         const data = {message, user, currentPostId}
         fetch(`http://localhost:5000/api/post/${currentPostId}/reply`, {
@@ -199,7 +198,7 @@ function HomePage() {
                             }
                         </div>
                     </div>  
-                        </div>
+                </div>
                 ))
             }
         </div>

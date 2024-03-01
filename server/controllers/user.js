@@ -57,6 +57,17 @@ exports.index = asyncHandler(async (req,res) => {
     res.sendStatus(200)
 })
 
+exports.user_get = asyncHandler(async (req,res) => {
+    const user = await User.findOne({_id: req.body.id})
+    if(user == null){
+        return res.status(401).json("User doesn't exist")
+    }
+
+    res.status(200).json(user).end()
+})
+
+
+
 exports.discoverList = asyncHandler(async (req,res) => {
     const allUsers = await User.find().where({'followers': {"$ne": req.body.id}}).sort({followers: -1}).exec()
     res.status(200).json(allUsers).end()

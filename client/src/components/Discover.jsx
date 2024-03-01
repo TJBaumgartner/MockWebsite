@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import '../App.css'
 import { Link } from 'react-router-dom'
-
+import ExploreTabs from './ExploreTabs'
 function Discover() {
 
     const id = localStorage.getItem('userID')
@@ -63,17 +63,7 @@ function Discover() {
 
     return (
         <div className='followListContainer'>
-            <div className='followTabs'>
-                <Link to={'/discover'}>
-                    <p>Discover</p>
-                </Link>
-                <Link to={'/followers'}>
-                    <p>Followers</p>
-                </Link>
-                <Link to={'/following'}>
-                    <p>Following</p>
-                </Link>
-            </div>
+            <ExploreTabs/>
             {users &&
                 users.map((user) => (
                     (user.username == name || user.followers.includes(id)) ?
