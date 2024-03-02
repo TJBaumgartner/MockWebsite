@@ -40,15 +40,11 @@ function SignUp() {
     return (
         <div className='signupWrapper'>
             <div className='signupContainer'>
-                <h1>Sign Up</h1>
+                <h1>Join Today!</h1>
                 <form action="" method='POST' className='signupForm' onSubmit={handleSubmit}>
-                    <label htmlFor='username'>Username</label>
                     <input type="text" name='text' id="username" value={username} placeholder='Username' onChange={(e) => setUsername(e.target.value.replace(" ", ""))} required></input>
-                    <label htmlFor='email'>Email</label>
                     <input type="email" name='text' id="email" value={email} placeholder='Email' onChange={(e) => setEmail(e.target.value.replace(" ", ""))} required></input>
-                    <label htmlFor='password'>Password</label>
                     <input type="password" name='password' id="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value.replace(" ", ""))} required></input>
-                    <label htmlFor='confirmPassword'>Confirm Password</label>
                     <input type="password" name='confirmPassword' id="confirmPassword" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value.replace(" ", ""))} required></input>
                     <div className='createAccountLink'>
                         <h3>Already a user? <Link to="/login">Login!</Link></h3>

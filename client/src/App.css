@@ -351,3 +351,70 @@ REPLIES/LIKES/POSTS - USER
   font-weight: 700;
   font-size: 1.2em;
 }
+/*
+SIGNUP SIGNUP SIGNUP
+SIGNUP SIGNUP SIGNUP
+SIGNUP SIGNUP SIGNUP
+SIGNUP SIGNUP SIGNUP
+SIGNUP SIGNUP SIGNUP
+SIGNUP SIGNUP SIGNUP
+SIGNUP SIGNUP SIGNUP
+SIGNUP SIGNUP SIGNUP
+SIGNUP SIGNUP SIGNUP
+SIGNUP SIGNUP SIGNUP
+*/
+.signupWrapper{
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  max-width: 600px;
+  min-height: 400px;
+  height: 650px;
+  background-color: rgb(71, 71, 71);
+  color: white;
+  border-radius: 5%;
+}
+.signupContainer{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+}
+.signupForm input{
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgb(43, 43, 43);
+  color: white;
+  font-size: 1.2rem;
+}
+.signupForm input::placeholder{
+  font-size: 1.2rem;
+  color: rgb(151, 151, 151);
+}
+.signupForm button{
+  width: 100%;
+  color: white;
+  background-color: rgb(43, 43, 43);
+  padding: 20px;
+  border-radius: 20px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  border: 2px solid black;
+}
+.signupForm h1{
+  margin-bottom: 30px;
+}
+.signupForm div{
+  margin-bottom: 30px;
+}
+.signupForm input{
+  margin-bottom: 20px;
+  border: 2px solid black;
+}
+.signupContainer h1{
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}

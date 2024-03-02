@@ -24,7 +24,7 @@ function PostDetail() {
 
     useEffect(() => {
         loadComments()
-    }, [])
+    }, [displayForm])
 
     const loadComments = () => {
         fetch(`http://localhost:5000/api/post/${id}/comments`, {   
@@ -38,9 +38,6 @@ function PostDetail() {
             return response.json()
         })
         .then((data) => {
-            // if(comments){
-            //     return setComments(...comments,data[0].comment)
-            // }
             setPost(data[0])
             setComments(data[0].comment)
         }) 
@@ -156,7 +153,6 @@ function PostDetail() {
                 <h1>{comment.user[0].username}</h1>
                 {moment(comment.createdAt, 'YYYY-MM-DD hh:mm:ss').format('MM/DD/YYYY')}      
                 <p>{comment.message}</p>
-                <button onClick={() => console.log(comment)}>click</button>
             </div>
         ))
     }
