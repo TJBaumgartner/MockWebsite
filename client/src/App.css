@@ -253,7 +253,19 @@ FOLLOWER/FOLLOWING LIST
 .followTabs a{
   color: white;
 }
-
+.followButton {
+  min-width: 10%;
+  padding: .4em .7em .4em .7em;
+  background-color: rgb(40, 96, 133);
+  color: white;
+  border-radius: 50px;
+  border: none;
+  margin-left: auto;
+  background-color: var(--twitter-blue);
+  color: white;
+  font-weight: 700;
+  font-size: 1.2em;
+}
 /* 
 POST CARD + CONTAINER
 POST CARD + CONTAINER

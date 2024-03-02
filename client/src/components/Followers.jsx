@@ -95,10 +95,10 @@ function Followers() {
                             <p>{user.bio}</p>
                         </div>
                         {following.includes(user) &&
-                            <button onClick={() => unfollow(user)}>Unfollow</button>
+                            <button onClick={() => unfollow(user)} className='followButton'>Unfollow</button>
                         }
                         {!following.includes(user) &&
-                            <button onClick={() => follow(user)}>Follow</button>
+                            <button onClick={() => follow(user)} className='followButton'>Follow</button>
                         }
                     </div>
                 ))

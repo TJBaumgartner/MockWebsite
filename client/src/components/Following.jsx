@@ -59,7 +59,7 @@ function Following() {
                             <span>{user.username}</span>
                             <p>{user.bio}</p>
                         </div>
-                        <button onClick={() => unfollow(user._id)} >Unfollow</button>
+                        <button onClick={() => unfollow(user._id)} className='followButton'>Unfollow</button>
                     </div>
                     :
                     null

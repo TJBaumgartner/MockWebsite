@@ -75,10 +75,10 @@ function Discover() {
                             <p>{user.bio}</p>
                         </div>
                         {following.includes(user._id) &&
-                            <button onClick={() => unfollow(user._id)}>Unfollow</button>
+                            <button onClick={() => unfollow(user._id)} className='followButton'>Unfollow</button>
                         }
                         {!following.includes(user._id) &&
-                            <button onClick={() => follow(user._id)}>Follow</button>
+                            <button onClick={() => follow(user._id)} className='followButton'>Follow</button>
                         }
                     </div>
                 ))
