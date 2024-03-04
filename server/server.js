@@ -4,7 +4,6 @@ const path = require("path");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const router = require('./routes/router')
-
 mongoose.set("strictQuery", false);
 main().catch((err) => console.log(err));
 async function main() {
@@ -24,13 +23,13 @@ app.use(cors(corsOptions))
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 
 app.use('/api', router)
 
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
 
 app.use(function(err, req, res, next) {
   res.locals.message = err.message;

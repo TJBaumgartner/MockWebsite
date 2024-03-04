@@ -3,6 +3,10 @@ const User = require('../models/user')
 const Comment = require('../models/comments')
 const asyncHandler = require("express-async-handler");
 
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
 exports.post_create_get = asyncHandler(async (req, res, next) => {
     res.sendStatus(200)
 });
@@ -11,11 +15,13 @@ exports.post_create_post = asyncHandler(async(req,res,next) => {
     if(user == null){
         res.status(400).json('User does not exist')
     }
+    console.log(req.body.image)
     const post = new Post({
         message: req.body.message,
         likes: 0,
         date: Date.now(),
-        user: req.body.user
+        user: req.body.user,
+        image: req.body.image
     })
     await post.save()
     res.sendStatus(200)
@@ -88,3 +94,4 @@ exports.post_detail_get = asyncHandler(async (req, res, next) => {
 exports.post_detail_post = asyncHandler(async (req, res, next) => {
     res.send('Posts Delete Post')
 });
+

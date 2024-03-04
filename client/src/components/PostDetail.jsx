@@ -101,12 +101,13 @@ function PostDetail() {
 
     return (
     <div  className='postContainer'>
+        <h1>Post</h1>
     {post &&
     <div>
-        <div className='postTop'>
-            <h1>{post.user[0].username}</h1> 
-            {post.message}
-            {moment(post.createdAt, 'YYYY-MM-DD hh:mm:ss').format('MM/DD/YYYY')}      
+        <div className='detailPostTop'>
+            <h3>{post.user[0].username}</h3> 
+            <p>{post.message}</p>
+            <p>{moment(post.createdAt, 'YYYY-MM-DD hh:mm:ss').format('MM/DD/YYYY')} </p>     
         </div>
         <div className='postBottom'>
             {/* {likes.includes(post._id) &&
