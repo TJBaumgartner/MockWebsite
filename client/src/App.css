@@ -384,6 +384,34 @@ REPLIES/LIKES/POSTS - USER
 .userTabs a{
   color: white;
 }
+.editForm{
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+}
+.editForm button{
+  min-width: 30%;
+  padding: .2em .5em .2em .5em;
+  background-color: rgb(40, 96, 133);
+  color: white;
+  border-radius: 50px;
+  border: none;
+  margin-left: auto;
+  background-color: var(--twitter-blue);
+  border: 1px solid rgb(41, 41, 41);
+  color: white;
+  font-weight: 700;
+  font-size: 1em;
+}
+.editForm input{
+  margin-top: 10px;
+  color: white;
+  background-color: gray;
+  border-radius: 20px;
+  border: 1px solid darkgray;
+  padding: .7rem 1rem .7rem 1rem;
+  font-size: 1rem;
+}
 .active{
   border-bottom: 5px solid var(--twitter-blue);
 }

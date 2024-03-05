@@ -59,9 +59,9 @@ function EditProfile() {
                 </div>
                 }
                 {displayForm == true &&
-                    <div>
-                        <form action="" method='POST' onSubmit={submitChange}>
-                            <p>Edit Bio</p>
+                    <div className='editContainer'>
+                        <p>Edit Bio</p>
+                        <form action="" method='POST' onSubmit={submitChange} className='editForm'>
                             <input type='text' required value={bio} onChange={(e) => setBio(e.target.value)} maxLength={"200"}/>
                             <button type='submit'>Confirm</button>
                         </form>
