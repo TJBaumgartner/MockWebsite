@@ -46,7 +46,7 @@ function EditProfile() {
         setDisplayForm(false)
     }
     return (
-    <div>
+    <div className='profileContainer'>
         {user && 
             <div>
                 <div className='userHeader'>
@@ -62,7 +62,7 @@ function EditProfile() {
                     <div>
                         <form action="" method='POST' onSubmit={submitChange}>
                             <p>Edit Bio</p>
-                            <textarea required value={bio} onChange={(e) => setBio(e.target.value)} maxLength={"200"}></textarea>
+                            <input type='text' required value={bio} onChange={(e) => setBio(e.target.value)} maxLength={"200"}/>
                             <button type='submit'>Confirm</button>
                         </form>
                     </div>                

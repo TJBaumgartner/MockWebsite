@@ -7,10 +7,8 @@ import {useNavigate, useParams } from 'react-router-dom';
 
 
 function PostDetail() {
-    const navigate = useNavigate()
 
     const [likes, setLikes] = useState([])
-    const [likesLoaded, setLikesLoaded] = useState(false)
     const [displayForm, setDisplayForm] = useState(false)
     const [message, setMessage] = useState('')
 
@@ -43,36 +41,34 @@ function PostDetail() {
         }) 
     }
 
-
-
-    const likePost = (post) =>{
-        const user = id
-        const data = {post, user}
-        fetch(`http://localhost:5000/api/homepage/posts/${post}/like`, {   
-            method: 'POST',     
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data)
-        })
-        .then((response) => {
-            return response.json()
-        })
-        return setLikes([...likes, post])
-    }
-    const unlikePost = (post) =>{
-        const user = id
-        const data = {post, user}
-        fetch(`http://localhost:5000/api/homepage/posts/${post}/unlike`, {   
-            method: 'POST',     
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data)
-        })
-        .then((response) => {
-            return response.json()
-        })
-        setLikes(likes.filter(function(likes){
-            return likes !== post
-        }))
-    }
+    // const likePost = (post) =>{
+    //     const user = id
+    //     const data = {post, user}
+    //     fetch(`http://localhost:5000/api/homepage/posts/${post}/like`, {   
+    //         method: 'POST',     
+    //         headers: {'Content-Type': 'application/json'},
+    //         body: JSON.stringify(data)
+    //     })
+    //     .then((response) => {
+    //         return response.json()
+    //     })
+    //     return setLikes([...likes, post])
+    // }
+    // const unlikePost = (post) =>{
+    //     const user = id
+    //     const data = {post, user}
+    //     fetch(`http://localhost:5000/api/homepage/posts/${post}/unlike`, {   
+    //         method: 'POST',     
+    //         headers: {'Content-Type': 'application/json'},
+    //         body: JSON.stringify(data)
+    //     })
+    //     .then((response) => {
+    //         return response.json()
+    //     })
+    //     setLikes(likes.filter(function(likes){
+    //         return likes !== post
+    //     }))
+    // }
 
     const displayReplyForm = (post) => {
         setDisplayForm(true)
@@ -100,63 +96,85 @@ function PostDetail() {
 
 
     return (
-    <div  className='postContainer'>
-        <h1>Post</h1>
-    {post &&
-    <div>
-        <div className='detailPostTop'>
-            <h3>{post.user[0].username}</h3> 
-            <p>{post.message}</p>
-            <p>{moment(post.createdAt, 'YYYY-MM-DD hh:mm:ss').format('MM/DD/YYYY')} </p>     
-        </div>
-        <div className='postBottom'>
-            {/* {likes.includes(post._id) &&
-                <span onClick={() => unlikePost(post._id)} className='likedPost'><i className="fa fa-heart"></i>{post.likes}</span>                            
-            }
-            {!likes.includes(post._id) &&
-                <span onClick={() => likePost(post._id)} className='unlikedPost'><i className="fa fa-heart"></i>{post.likes}</span>                            
-            } */}
-            <div>
-                <i className="fa fa-comment" onClick={() => displayReplyForm(post._id)}>{post.comment.length}</i>
-                {displayForm == true &&
+    <div  className='postContainer2'>
+        {post &&
+        <div className='postDetailContainer'>
+            <div className='detailPostTop'>
+                <h3>{post.user[0].username}</h3> 
+                <p>{post.message}</p>
+                <p>{moment(post.createdAt, 'YYYY-MM-DD hh:mm:ss').format('MM/DD/YYYY')} </p>     
+            </div>
+            <div className='postBottom'>
+                {/* {likes.includes(post._id) &&
+                    <span onClick={() => unlikePost(post._id)} className='likedPost'><i className="fa fa-heart"></i>{post.likes}</span>                            
+                }
+                {!likes.includes(post._id) &&
+                    <span onClick={() => likePost(post._id)} className='unlikedPost'><i className="fa fa-heart"></i>{post.likes}</span>                            
+                } */}
+                <span><i className="fa fa-heart"></i>{post.likes}</span>                            
                 <div>
-                    <div className='postFormBackground' onClick={() => closeReplyForm()}></div>
-                    <div className='postFormContainer'>
-                        <span onClick={() => closeReplyForm()}>X</span>
-                        <form className="postForm" action="" method="POST" onSubmit={(e) => createReply(e)}>
-                            <textarea 
-                            name="message" 
-                            id="message" 
-                            type="text"
-                            required
-                            value={message}
-                            onChange={(e) => setMessage(e.target.value)}
-                            placeholder='Post your reply'
-                            />
-                            <div className='bottomBorder'></div>
-                            {message !== '' &&
-                                <button type="submit">Reply</button>
-                            }
-                            {message == '' &&
-                                <button type='button' className='disabledButton'>Reply</button>
-                            }
-                        </form>  
-                    </div> 
+                    <i className="fa fa-comment" onClick={() => displayReplyForm(post._id)}>{post.comment.length}</i>
+                    {displayForm == true &&
+                    <div>
+                        <div className='postFormBackground' onClick={() => closeReplyForm()}></div>
+                        <div className='postFormContainer'>
+                            <span onClick={() => closeReplyForm()}>X</span>
+                            <form className="postForm" action="" method="POST" onSubmit={(e) => createReply(e)}>
+                                <textarea 
+                                name="message" 
+                                id="message" 
+                                type="text"
+                                required
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+                                placeholder='Post your reply'
+                                />
+                                <div className='bottomBorder'></div>
+                                {message !== '' &&
+                                    <button type="submit">Reply</button>
+                                }
+                                {message == '' &&
+                                    <button type='button' className='disabledButton'>Reply</button>
+                                }
+                            </form>  
+                        </div> 
+                        </div>
+                        }
+                </div>
+            </div>  
+        </div>
+        }
+        <div>
+            <form className="replyForm" action="" method="POST" onSubmit={(e) => createReply(e)}>
+                <textarea 
+                name="message" 
+                id="message" 
+                type="text"
+                required
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder='Post your reply'
+                />
+                <div className='bottomBorder'></div>
+                {message !== '' &&
+                    <button type="submit">Reply</button>
+                }
+                {message == '' &&
+                    <button type='button' className='replyDisabledButton'>Reply</button>
+                }
+            </form>  
+        </div>
+        {comments &&
+            comments.map((comment) => (    
+                <div className='commentContainer'>
+                    <div>
+                        <h3>{comment.user[0].username}</h3>
+                        {moment(comment.createdAt, 'YYYY-MM-DD hh:mm:ss').format('MM/DD/YYYY')}      
                     </div>
-                    }
-            </div>
-        </div>  
-    </div>
-    }
-    {comments &&
-        comments.map((comment) => (    
-            <div>
-                <h1>{comment.user[0].username}</h1>
-                {moment(comment.createdAt, 'YYYY-MM-DD hh:mm:ss').format('MM/DD/YYYY')}      
-                <p>{comment.message}</p>
-            </div>
-        ))
-    }
+                    <p>{comment.message}</p>
+                </div>
+            ))
+        }
     </div>
   )
 }

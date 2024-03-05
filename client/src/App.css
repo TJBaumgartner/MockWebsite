@@ -81,6 +81,7 @@
 }
 
 .logout{
+    position: fixed;
     max-width: 100%;
     padding: .7em 1.5em .7em 1.5em;
     border-radius: 20px;
@@ -190,9 +191,6 @@ POST CREATE FORM
   display: flex;
   flex-direction: column;
 }
-.reltative{
-  position: relative;
-}
 .postForm button{
   max-width: 15%;
   padding: .7em 1.5em .7em 1.5em;
@@ -207,10 +205,6 @@ POST CREATE FORM
 .disabledButton{
   background-color: rgb(40, 96, 133) !important;
 }
-.bottomBorder{
-  border-bottom: 1px solid white;
-  margin-bottom: 1em;
-}
 .postForm textarea{
   width: 100%;
   min-height: 100px;
@@ -222,6 +216,13 @@ POST CREATE FORM
 }
 .postForm textarea::placeholder{
   color: white;
+}
+.reltative{
+  position: relative;
+}
+.bottomBorder{
+  border-bottom: 1px solid white;
+  margin-bottom: 1em;
 }
 /*
 FOLLOWER/FOLLOWING LIST
@@ -324,8 +325,12 @@ POST CARD + CONTAINER
   color: red;
 }
 .detailPostTop{
+  margin-left: 20px;
   display: flex;
   flex-direction: column;
+}
+.detailPostTop p{
+  margin-top: 10px;
 }
 /* 
 REPLIES/LIKES/POSTS - USER
@@ -344,7 +349,28 @@ REPLIES/LIKES/POSTS - USER
   margin: auto;
   background-color: gray;
   color: white;
+}
+.postContainer2{
+  background-color: rgb(71, 71, 71);
+  color: white;
+  border-bottom: 1px solid gray;
+}
+.postDetailContainer{
+  border-bottom: 1px solid gray;
+  padding: 10px;
+}
+.profileContainer{
   padding: 1.2rem;
+  border-bottom: 2px solid rgb(71, 71, 71);
+}
+.commentContainer{
+  border-bottom: 1px solid gray;
+  padding: 10px;
+
+}
+.commentContainer div{
+  display: flex;
+  flex-direction: row;
 }
 .userTabs{
   display: flex;
@@ -353,6 +379,7 @@ REPLIES/LIKES/POSTS - USER
   font-weight: 700;
   margin-bottom: 20px;
   font-size: 1.2rem;
+  margin-top: 20px;
 }
 .userTabs a{
   color: white;
@@ -376,6 +403,39 @@ REPLIES/LIKES/POSTS - USER
   color: white;
   font-weight: 700;
   font-size: 1.2em;
+}
+.replyForm{
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid gray;
+  padding-bottom: 10px;
+}
+.replyForm button{
+  max-width: 25%;
+  padding: .7em 1.5em .7em 1.5em;
+  border-radius: 20px;
+  border: none;
+  margin-left: auto;
+  background-color: var(--twitter-blue);
+  color: white;
+  font-weight: 700;
+  font-size: 1em;
+  margin-right: 10px;
+}
+.replyDisabledButton{
+  background-color: rgb(40, 96, 133) !important;
+}
+.replyForm textarea{
+  width: 100%;
+  min-height: 100px;
+  background-color: rgb(71, 71, 71);
+  border: none;
+  color: white;
+  padding: 1em;
+  font-size: 1.2em;
+}
+.replyForm textarea::placeholder{
+  color: white;
 }
 /*
 SIGNUP SIGNUP SIGNUP
