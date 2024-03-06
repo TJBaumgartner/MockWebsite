@@ -11,7 +11,7 @@ function Followers() {
 
     const loadUsers = () => {
         const data = {id}
-        const newData = fetch(`http://localhost:5000/api/user/followers`, {   
+        const newData = fetch(`https://mock-twitter-sqzg.onrender.com/api/user/followers`, {   
             method: 'POST',     
             headers: {
                 'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ function Followers() {
     const unfollow = (element) => {
         const user = element._id
         const data = {id, user}
-        fetch('http://localhost:5000/api/user/unfollow', {
+        fetch('https://mock-twitter-sqzg.onrender.com/api/user/unfollow', {
             method: 'POST',
             headers: {"Content-type": "application/json"},
             body: JSON.stringify(data)
@@ -61,7 +61,7 @@ function Followers() {
     const follow = (element) => {
         const user = element._id
         const data = {id, user}
-        fetch('http://localhost:5000/api/user/follow', {
+        fetch('https://mock-twitter-sqzg.onrender.com/api/user/follow', {
             method: 'POST',
             headers: {"Content-type": "application/json"},
             body: JSON.stringify(data)

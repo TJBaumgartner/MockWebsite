@@ -16,7 +16,7 @@ function Discover() {
 
     const loadUsers = () => {
         const data = {id}
-        fetch(`http://localhost:5000/api/user/discover`, {   
+        fetch(`https://mock-twitter-sqzg.onrender.com/api/user/discover`, {   
             method: 'POST',     
             headers: {
                 'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ function Discover() {
 
     const follow = (user) => {
         const data = {id, user}
-        fetch('http://localhost:5000/api/user/follow', {
+        fetch('https://mock-twitter-sqzg.onrender.com/api/user/follow', {
             method: 'POST',
             headers: {"Content-type": "application/json"},
             body: JSON.stringify(data)
@@ -48,7 +48,7 @@ function Discover() {
     const unfollow = (user) => {
 
         const data = {id, user}
-        fetch('http://localhost:5000/api/user/unfollow', {
+        fetch('https://mock-twitter-sqzg.onrender.com/api/user/unfollow', {
             method: 'POST',
             headers: {"Content-type": "application/json"},
             body: JSON.stringify(data)

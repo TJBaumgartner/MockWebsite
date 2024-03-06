@@ -12,7 +12,7 @@ function EditProfile() {
     useEffect(() => {
     
         const data = {id}
-        fetch(`http://localhost:5000/api/profile/${id}`, {   
+        fetch(`https://mock-twitter-sqzg.onrender.com/api/profile/${id}`, {   
             method: 'POST',     
             headers: {
                 'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ function EditProfile() {
     const submitChange = (e) => {
         e.preventDefault()
         const data = {id, bio}
-        fetch(`http://localhost:5000/api/profile/${id}/edit`, {   
+        fetch(`https://mock-twitter-sqzg.onrender.com/api/profile/${id}/edit`, {   
             method: 'POST',     
             headers: {
                 'Content-Type': 'application/json',

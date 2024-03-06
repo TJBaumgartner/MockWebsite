@@ -25,7 +25,7 @@ function PostDetail() {
     }, [displayForm])
 
     const loadComments = () => {
-        fetch(`http://localhost:5000/api/post/${id}/comments`, {   
+        fetch(`https://mock-twitter-sqzg.onrender.com/api/post/${id}/comments`, {   
             method: 'GET',     
             headers: {
                 'Content-Type': 'application/json',

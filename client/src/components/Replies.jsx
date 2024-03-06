@@ -9,7 +9,7 @@ function Replies() {
 
     useEffect(() => {
         const data = {id}
-        fetch(`http://localhost:5000/api/user/${id}/likes`, {   
+        fetch(`https://mock-twitter-sqzg.onrender.com/api/user/${id}/likes`, {   
             method: 'POST',     
             headers: {
                 'Content-Type': 'application/json',

@@ -23,7 +23,7 @@ function Login(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         const user = {username, password}
-            fetch('http://localhost:5000/api/login', {
+            fetch('https://mock-twitter-sqzg.onrender.com/api/login', {
                 method: 'POST',
                 headers: {"Content-type": "application/json"},
                 body: JSON.stringify(user)

@@ -12,7 +12,7 @@ function Posts() {
     const [posts, setPosts] = useState()
     useEffect(() => {
         const data = {id}
-        fetch(`http://localhost:5000/api/user/${id}/posts`, {   
+        fetch(`https://mock-twitter-sqzg.onrender.com/api/user/${id}/posts`, {   
             method: 'POST',     
             headers: {
                 'Content-Type': 'application/json',

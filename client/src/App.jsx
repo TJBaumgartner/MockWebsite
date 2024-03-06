@@ -21,7 +21,7 @@ function App() {
   
   useEffect(() => {
     setInterval(async () => {
-        fetch('http://localhost:5000/api/token', {        
+        fetch('https://mock-twitter-sqzg.onrender.com/api/token', {        
             method: 'POST',
             headers: {"Content-type": "application/json"},
             body: JSON.stringify({
@@ -46,7 +46,7 @@ function App() {
   }, [])
   
   const logout = async() => {
-    await fetch('http://localhost:5000/api/logout', {
+    await fetch('https://mock-twitter-sqzg.onrender.com/api/logout', {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({"token": localStorage.getItem('refresh')})
