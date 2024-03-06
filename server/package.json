@@ -5,8 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server",
-    "devStart": "nodemon server",
-    "build": "webpack --config webpack.config.js" 
+    "devStart": "nodemon server"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
