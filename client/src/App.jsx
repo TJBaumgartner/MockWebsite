@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react'
 import {Route, Routes } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import HomePage from './components/Homepage';
-import Signup from './components/signup';
+import Signup from './components/Signup';
 import Login from './components/Login'
 import Index from './components/Index';
 import Navbar from './components/Navbar';
