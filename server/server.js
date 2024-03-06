@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended:false}));
 const cors = require("cors");
 const corsOptions ={
-  origin: "*",
+  origin: "https://mock-twitter-sqzg.onrender.com",
   credentials: true,
 }
 app.use(cors(corsOptions))
