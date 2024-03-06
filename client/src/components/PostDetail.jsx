@@ -25,7 +25,7 @@ function PostDetail() {
     }, [displayForm])
 
     const loadComments = () => {
-        fetch(`https://mock-twitter-sqzg.onrender.com/api/post/${id}/comments`, {   
+        fetch(`https://mockwebsite-api.onrender.com/api/post/${id}/comments`, {   
             method: 'GET',     
             headers: {
                 'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ function PostDetail() {
         const user = localStorage.getItem('userID')
         const currentPostId = post._id;
         const data = {message, user, currentPostId}
-        fetch(`http://localhost:5000/api/post/${currentPostId}/reply`, {
+        fetch(`https://mockwebsite-api.onrender.com/api/post/${currentPostId}/reply`, {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(data)

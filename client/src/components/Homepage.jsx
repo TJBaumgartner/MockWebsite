@@ -19,7 +19,7 @@ function HomePage() {
 
 
     useEffect(() => {
-        fetch('https://mock-twitter-sqzg.onrender.com/api/homepage', {        
+        fetch('https://mockwebsite-api.onrender.com/api/homepage', {        
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer ' + localStorage.getItem('access')
@@ -35,7 +35,7 @@ function HomePage() {
 
     const loadPosts = () => {
         const data = {id}
-        fetch(`https://mock-twitter-sqzg.onrender.com/api/user/following`, {   
+        fetch(`https://mockwebsite-api.onrender.com/api/user/following`, {   
             method: 'POST',     
             headers: {
                 'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ function HomePage() {
             
             const followData = user.following
             const data = {followData, id}
-            fetch(`https://mock-twitter-sqzg.onrender.com/api/homepage/posts`, {   
+            fetch(`https://mockwebsite-api.onrender.com/api/homepage/posts`, {   
                 method: 'POST',     
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(data)
@@ -80,7 +80,7 @@ function HomePage() {
     const fetchLikes = () => {
         const postData = posts
         const data = {id, postData}
-        fetch(`https://mock-twitter-sqzg.onrender.com/api/user/getLikes`, {   
+        fetch(`https://mockwebsite-api.onrender.com/api/user/getLikes`, {   
             method: 'POST',     
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
@@ -95,7 +95,7 @@ function HomePage() {
     const likePost = (post) =>{
         const user = id
         const data = {post, user}
-        fetch(`https://mock-twitter-sqzg.onrender.com/api/homepage/posts/${post}/like`, {   
+        fetch(`https://mockwebsite-api.onrender.com/api/homepage/posts/${post}/like`, {   
             method: 'POST',     
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
@@ -109,7 +109,7 @@ function HomePage() {
     const unlikePost = (post) =>{
         const user = id
         const data = {post, user}
-        fetch(`https://mock-twitter-sqzg.onrender.com/api/homepage/posts/${post}/unlike`, {   
+        fetch(`https://mockwebsite-api.onrender.com/api/homepage/posts/${post}/unlike`, {   
             method: 'POST',     
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
@@ -131,7 +131,7 @@ function HomePage() {
         e.preventDefault();
         const user = localStorage.getItem('userID')
         const data = {message, user, currentPostId}
-        fetch(`https://mock-twitter-sqzg.onrender.com/api/post/${currentPostId}/reply`, {
+        fetch(`https://mockwebsite-api.onrender.com/api/post/${currentPostId}/reply`, {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(data)

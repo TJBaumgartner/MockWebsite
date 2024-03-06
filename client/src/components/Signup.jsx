@@ -18,7 +18,7 @@ function SignUp() {
         e.preventDefault();
         const user = {username, password, email}
         if(password == confirmPassword){
-            fetch('https://mock-twitter-sqzg.onrender.com/api/user/create', {
+            fetch('https://mockwebsite-api.onrender.com/api/user/create', {
 
                 method: 'POST',
                 headers: {"Content-type": "application/json"},

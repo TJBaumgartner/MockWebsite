@@ -13,7 +13,7 @@ function Following() {
 
     useEffect(() => {
         const data = {id}
-        fetch(`https://mock-twitter-sqzg.onrender.com/api/user/following`, {   
+        fetch(`https://mockwebsite-api.onrender.com/api/user/following`, {   
             method: 'POST',     
             headers: {
                 'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ function Following() {
     const unfollow = (user) => {
 
         const data = {id, user}
-        fetch('https://mock-twitter-sqzg.onrender.com/api/user/unfollow', {
+        fetch('https://mockwebsite-api.onrender.com/api/user/unfollow', {
             method: 'POST',
             headers: {"Content-type": "application/json"},
             body: JSON.stringify(data)

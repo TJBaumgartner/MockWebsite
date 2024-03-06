@@ -24,7 +24,7 @@ const Navbar = (props) => {
         const user = localStorage.getItem('userID')
         const data = {message, user, image}
         console.log(image)
-        fetch('https://mock-twitter-sqzg.onrender.com/api/post/create', {
+        fetch('https://mockwebsite-api.onrender.com/api/post/create', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(data)

@@ -14,7 +14,7 @@ function Likes() {
 
     useEffect(() => {
         const data = {id}
-        fetch(`https://mock-twitter-sqzg.onrender.com/api/user/${id}/likes`, {   
+        fetch(`https://mockwebsite-api.onrender.com/api/user/${id}/likes`, {   
             method: 'POST',     
             headers: {
                 'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ function Likes() {
     const likePost = (post, isLiked) =>{
         const user = id
         const data = {post, user}
-        fetch(`https://mock-twitter-sqzg.onrender.com/api/homepage/posts/${post}/like`, {   
+        fetch(`https://mockwebsite-api.onrender.com/api/homepage/posts/${post}/like`, {   
             method: 'POST',     
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
@@ -46,7 +46,7 @@ function Likes() {
     const unlikePost = (post, isLiked) =>{
         const user = id
         const data = {post, user}
-        fetch(`https://mock-twitter-sqzg.onrender.com/api/homepage/posts/${post}/unlike`, {   
+        fetch(`https://mockwebsite-api.onrender.com/api/homepage/posts/${post}/unlike`, {   
             method: 'POST',     
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
